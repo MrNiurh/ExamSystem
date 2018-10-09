@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.empMapper">
+	<select id="selectlistPage" parameterType="page" resultType="pd">
+		SELECT
+			emp.*, 
+			dept.deptName,
+			dept.deptLocal
+		FROM
+			emp
+		LEFT JOIN dept ON emp.deptno = dept.deptno
+		<where>
+			<if test="pd.deptno != null and pd.deptno !=''">
+         		emp.deptno = #{pd.deptno}
+   		 	</if>
+   		 	<if test="pd.minsal != null and pd.minsal !=''">
+         		AND emp.sal > #{pd.minsal}
+   		 	</if>
+   		 	<if test="pd.maxsal != null and pd.maxsal !=''">
+         		AND emp.sal &lt; #{pd.maxsal}
+   		 	</if>
+   		 	<if test="pd.keyword != null and pd.keyword  !=''">
+         		AND (
+					emp.empName LIKE CONCAT('%',#{pd.keyword},'%')
+					OR emp.address LIKE CONCAT('%',#{pd.keyword},'%')
+				)
+   		 	</if> 
+		</where>
+	</select>
+	<select id="selectOneInfo" parameterType="String" resultType="pd">
+		SELECT
+			emp.*, dept.deptName,
+			dept.deptLocal
+		FROM
+			emp
+		LEFT JOIN dept ON emp.deptno = dept.deptno
+		WHERE
+			emp.empId = #{empid}
+	</select>
+	<update id="updateOneInfo" parameterType="pd">
+		update emp
+    		SET empName = #{empname},
+				phone = #{phone},
+ 				email = #{email},
+ 				address = #{address},
+ 				job = #{job},
+ 				deptno = #{deptno},
+ 				sal = #{sal}
+  		where empId = #{empid}
+	</update>
+	<insert id="insertOneInfo" parameterType="pd">
+		INSERT INTO emp (
+			empId,
+			empName,
+			phone,
+			email,
+			address,
+			job,
+			deptno,
+			sal
+		)
+		VALUES
+		(
+			#{empid},
+			#{empname},
+			#{phone},
+			#{email},
+			#{address},
+			#{job},
+			#{deptno},
+			#{sal}
+		);
+	</insert>
+	<delete id="deleteOneInfo" parameterType="String">
+		DELETE FROM emp WHERE empId = #{empid}
+	</delete>
+	<!-- 获取所有的部门信息 -->
+	<select id="selectAllDept" resultType="pd">
+		SELECT * FROM dept
+	</select>
+</mapper>
