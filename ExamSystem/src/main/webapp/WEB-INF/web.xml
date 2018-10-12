@@ -5,6 +5,10 @@
 	version="3.0">
 
 	<display-name>SSM</display-name>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>app1.root</param-value>
+	</context-param>
 	<servlet>
 		<servlet-name>springMvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
