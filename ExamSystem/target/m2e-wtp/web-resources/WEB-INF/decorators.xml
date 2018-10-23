@@ -5,6 +5,15 @@
 	<decorator name="popup" page="mainPopup.jsp">
 		<pattern>/*Popup/*</pattern>
 	</decorator>
+	<decorator name="student" page="student_head.jsp">
+		<pattern>/student/*</pattern>
+	</decorator>
+	<decorator name="teacher" page="teacher_head.jsp">
+		<pattern>/teacher/*</pattern>
+	</decorator>
+	<decorator name="admin" page="admin_head.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
 	<excludes>
 		<pattern>/jsp/exclude/*</pattern>
 	</excludes>

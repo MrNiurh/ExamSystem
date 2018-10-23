@@ -37,16 +37,17 @@
 	<!-- Other XML Configuration -->
 	<!-- Load by Spring ContextLoaderListener -->
 	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:logger/log4j.properties</param-value>
+	</context-param>
+	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath*:spring/application-web.xml<!-- ,
 			classpath*:spring/application-dao.xml -->
 		</param-value>
 	</context-param>
-	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:logger/log4j.properties</param-value>
-	</context-param>
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -77,11 +78,12 @@
 
 	<!-- Spring ContextLoaderListener -->
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 
 	<!-- sitemesh -->
 	<filter>
