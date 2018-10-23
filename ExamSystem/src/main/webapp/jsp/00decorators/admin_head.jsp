@@ -23,57 +23,27 @@
 
 <!-- 项目CSS -->
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet"
-	type="text/css">	
-	<!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css " rel="stylesheet "> -->
-<link href="<%=path%>/css/layout.css?uuid=${uuid}" rel="stylesheet" />
-<link href="<%=path%>/css/nsicat.css?uuid=${uuid}" rel="stylesheet" />
-<link href="<%=path%>/css/nsicat-nsicat-columns.css?uuid=${uuid}" rel="stylesheet" />
+	type="text/css">
 <!-- fonts 字体 -->
 <link href="<%=path%>/fonts/font-awesome/css/font-awesome.css?v=4.3.0"
 	rel="stylesheet" type="text/css">
 <link href="<%=path%>/fonts/font-pingfang/font.css" rel="stylesheet"
 	type="text/css">
-<!-- Gritter -->
-<link href="<%=path%>/js/plugins/gritter/jquery.gritter.css"
-	rel="stylesheet" type="text/css">
-<link href="<%=path%>/css/animate.css" rel="stylesheet" type="text/css">
-<link href="<%=path%>/js/plugins/iCheck/skins/flat/blue.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="<%=path%>/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"
-	rel="stylesheet" type="text/css">
+
 <!-- Mainly scripts -->
 <script src="<%=path%>/js/jquery/jquery-2.1.1.min.js"></script>
 <script src="<%=path%>/js/bootstrap.min.js"></script>
-<script src="<%=path%>/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="<%=path%>/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-
-<!-- Custom and plugin javascript -->
-<script src="<%=path%>/js/hplus.js?v=2.2.0"></script>
-<script src="<%=path%>/js/plugins/pace/pace.min.js"></script>
-<script src="<%=path%>/js/plugins/iCheck/icheck.min.js"></script>
-<script src="<%=path%>/js/plugins/laydate/laydate.js"
-	type="text/javascript"></script>
-
-<!-- jquery validate js -->
-<script src="<%=path%>/js/plugins/validate/jquery.validate.min.js"></script>
-<script src="<%=path%>/js/plugins/validate/messages_zh.min.js"></script>
-
-<link href="<%=path%>/js/layer/skin/layer.css?uuid=${uuid}"
-	rel="stylesheet" type="text/css">
-<script src="<%=path%>/js/layer/layer.js"></script>
-
-<script src="<%=path%>/js/common/common.util.js?uuid=${uuid}"></script>
-
-<script type="text/javascript" src="<%=path%>/js/home.js?uuid=${uuid}"></script>
-<link href="<%=path%>/fonts/font_nsicat/iconfont.css?uuid=${uuid}"
-	rel="stylesheet" type="text/css">
-	<link href="<%=path%>/fonts/font-common/iconfont.css?uuid=${uuid}"
-	rel="stylesheet" type="text/css">
-<link href="<%=path%>/css/home.css?uuid=${uuid}" rel="stylesheet"
-	type="text/css" />
-<script src="<%=path%>/fonts/font_nsicat/iconfont.js?uuid=${uuid}"></script>
+<link rel="stylesheet" href="<%=path%>/layui/css/layui.css">
+<link rel="stylesheet" href="<%=path%>/css/teacher/main.css">
+<script src="<%=path%>/layui/layui.js"></script>
+<script>
+          
+          layui.use('element', function(){
+            var element = layui.element;
+         
+          });
+          </script>
 <!-- <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script> -->
@@ -91,12 +61,44 @@ var abroot = "<%=basePath%>";
 </script>
 <body>
 	<div style="min-width: 1100px;">
-		<h1>HEAD</h1>
+		<div id="topcontain">
+			<div class="layui-main">
+				<a href="" id="mainlogo">上机考试管理系统</a>
+				<div id="topsec">
+					<ul class="layui-nav">
+						<li class="layui-nav-item"><a href="">首页</a></li>
+						<li class="layui-nav-item"><a href="">教师管理</a></li>
+						<li class="layui-nav-item"><a href="javascript:;">考试清理</a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="">考试概况</a>
+								</dd>
+								<dd>
+									<a href="">学生信息</a>
+								</dd>
+								<dd>
+									<a href="">接触锁定</a>
+								</dd>
+								<dd>
+									<a href="">通知管理</a>
+								</dd>
+							</dl></li>
+						<li class="layui-nav-item"><a href="">系统配置</a></li>
+					</ul>
+				</div>
+				<div id="toprig">
+					<ul class="layui-nav">
+						<li class="layui-nav-item"><a href="">欢迎，aa</a></li>
+						<li class="layui-nav-item"><a href=""> 修改口令 </a></li>
+						<li class="layui-nav-item"><a href="">退出</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div style="clear: both; padding-top: 105px;min-width:1320px;overflow-x:auto; ">
+	<div style="clear: both; min-width: 1320px; overflow-x: auto;">
 		<sitemesh:body />
 	</div>
-
 
 	<div class="foot">
 		<h1>FOOT</h1>
