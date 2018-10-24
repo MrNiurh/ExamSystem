@@ -1,0 +1,66 @@
+body,html{
+    margin: 0;
+    padding: 0;
+}
+a:hover{
+    text-decoration: none;
+}
+#topcontain{
+    width: 100%;
+    background: #393D49;
+    height: 60px;
+}
+#mainlogo{
+    font-size: 20px;
+    height: 60px;
+    line-height: 60px;
+    color: beige;
+    display: inline-block;
+    position: absolute;
+    
+}
+#topsec{
+    width: 40%;
+    position: absolute;
+    left: 170px;
+    
+}
+#toprig{
+    right: 0;
+    position: absolute;
+    width: 30%;
+}
+.bccolor{
+    background-color: #eeeeee;
+    margin: 0 15px;
+    min-height: 400px;
+}
+.logo{
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    text-align: center;
+    line-height: 100px;
+}/*教师端首页图标*/
+.logotitle{
+    float: left;
+    height: 100px;
+    line-height: 100px;
+    font-weight: bolder;
+}
+.partone{
+    display: inline-block;
+}
+.stip{
+   display: inline-block;
+   margin: 20px;
+}/*小标题*/
+.sol{
+    margin: 10px;
+}
+.bol>li{
+    margin: 5px 0 5px 15px ;
+    width: 300px;
+    
+}
