@@ -11,7 +11,9 @@ import com.ssm.sample.util.Logger;
 public class BaseService {
 	protected Logger logger = Logger.getLogger(this.getClass());
 	
-
+	@Resource(name="sqlSessionTemplate")
+	protected SqlSessionTemplate sqlSessionTemplate;
+	
 	@Resource(name = "globalConf")
 	protected Properties globalConf;
 }

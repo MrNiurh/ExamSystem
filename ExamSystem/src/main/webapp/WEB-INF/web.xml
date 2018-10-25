@@ -43,8 +43,8 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath*:spring/application-web.xml<!-- ,
-			classpath*:spring/application-dao.xml -->
+			classpath*:spring/application-web.xml,
+			classpath*:spring/application-dao.xml
 		</param-value>
 	</context-param>
 
