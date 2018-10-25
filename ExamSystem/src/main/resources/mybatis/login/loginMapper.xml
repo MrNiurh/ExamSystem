@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="login.loginMapper">
+	<select id="getList" parameterType="pd" resultType="pd">
+		SELECT * FROM teacher
+		<where>
+			<if test="pd.username != null and pd.username !=''">
+				username = #{username}
+			</if>
+			<if test="pd.password != null and pd.password !=''">
+				and password = #{password}
+			</if>
+			and 1=1
+		</where>
+	</select>
+</mapper>

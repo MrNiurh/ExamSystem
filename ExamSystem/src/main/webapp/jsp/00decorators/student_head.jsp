@@ -60,7 +60,7 @@ if (root == "/") {root="";}
 var abroot = "<%=basePath%>";
 </script>
 <body>
-		<div style="min-width: 1100px;">
+	<div style="min-width: 1100px;">
 		<div id="topcontain">
 			<div class="layui-main">
 				<a href="" id="mainlogo">上机考试管理系统</a>
@@ -68,42 +68,17 @@ var abroot = "<%=basePath%>";
 					<ul class="layui-nav">
 						<li class="layui-nav-item"><a href="">首页</a></li>
 						<li class="layui-nav-item"><a href="">下载试卷</a></li>
-						<li class="layui-nav-item"><a href="javascript:;">上传答案</a>
-							<dl class="layui-nav-child">
-								<dd>
-									<a href="">考试概况</a>
-								</dd>
-								<dd>
-									<a href="">学生信息</a>
-								</dd>
-								<dd>
-									<a href="">接触锁定</a>
-								</dd>
-								<dd>
-									<a href="">通知管理</a>
-								</dd>
-							</dl></li>
+						<li class="layui-nav-item"><a href="javascript:;">上传答案</a></li>
 						<li class="layui-nav-item"><a href="">查看提交</a></li>
 					</ul>
 				</div>
-				<div id="toprig">
-					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="">欢迎，aa</a></li>
-						<li class="layui-nav-item"><a href=""> 修改口令 </a></li>
-						<li class="layui-nav-item"><a href="">退出</a></li>
-					</ul>
-				</div>
+				<div id="toprig"></div>
 			</div>
 		</div>
 	</div>
-	<div style="clear: both;min-width:1320px;overflow-x:auto; ">
+	<div style="clear: both; min-width: 1320px; overflow-x: auto;">
 		<sitemesh:body />
 	</div>
 
-
-	<div class="foot">
-		<h1>FOOT</h1>
-		<!-- 尾部 -->
-	</div>
 </body>
 </html>
