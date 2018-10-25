@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    widows: 1170px;
+    height: 118px;
+    
+    margin: 60px  auto 0;
+}
+.hide{
+    display: none;
+}
+.userlogin{
+    color: black;
+}
+.userinfo{
+    widows: 1170px;
+    height: 60px;
+    padding: 10px;
+    background:#555555 ;
+    margin-top: 21px;
+}
+.userstu{
+    height: 49px;
+    max-width:1150px;
+    overflow: auto;
+}
+.userstu h4{
+    color: white;
+    font-weight: 800;
+}
+.logincontent{
+    width:300px;
+    height: 320px;
+    position: absolute;
+    z-index: 10;
+    border: 1px solid black;
+    top:50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -160px;
+    background: #CCCCCC;
+}
+.logintop{
+    width: 260px;
+    height: 64px;
+    padding: 5px 0;
+    margin: 27px auto 0;
+}
+.loginimg{
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    
+    float: left;
+    
+    font:0;
+}
+.logintext{
+    display: inline-block;
+    height: 64px;
+    width:192px ;
+    color: black;
+
+}
+.logintext h3{
+    font-weight: 600;
+}
+.login{
+    clear: both;
+    width: 260px;
+    height: 168px;
+    padding: 20px;
+    margin:  0 auto;
+    display: inline-block;
+   
+    
+}
+.login input{
+    width:220px;
+    height: 30px;
+   
+}
+.login{
+    margin: 0 0 10px;
+}
+.formbox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.form{
+    width: 260px;
+    height: 168px;
+    background: #EEEEEE;
+    border-radius: 5px;
+}
