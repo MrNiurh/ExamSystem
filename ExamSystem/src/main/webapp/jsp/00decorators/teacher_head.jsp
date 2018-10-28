@@ -66,24 +66,24 @@ var abroot = "<%=basePath%>";
 				<a href="" id="mainlogo">上机考试管理系统</a>
 				<div id="topsec">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="">首页</a></li>
-						<li class="layui-nav-item"><a href="">考前操作</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>teacher/">首页</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_create_exam">考前操作</a></li>
 						<li class="layui-nav-item"><a href="javascript:;">考中管理</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="">考试概况</a>
+									<a href="<%=basePath%>teacher/teacher_exam_details">考试概况</a>
 								</dd>
 								<dd>
-									<a href="">学生信息</a>
+									<a href="<%=basePath%>teacher/">学生信息</a>
 								</dd>
 								<dd>
-									<a href="">接触锁定</a>
+									<a href="<%=basePath%>teacher/">接触锁定</a>
 								</dd>
 								<dd>
-									<a href="">通知管理</a>
+									<a href="<%=basePath%>teacher/">通知管理</a>
 								</dd>
 							</dl></li>
-						<li class="layui-nav-item"><a href="">考后操作</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_afterexam">考后操作</a></li>
 					</ul>
 				</div>
 				<div id="toprig">

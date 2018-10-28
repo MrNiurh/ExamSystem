@@ -39,7 +39,7 @@ if (root == "/") {root="";}
 	<div>
 		<div class="logincontent stucontent">
 			<div class="logintop">
-				<img src="<%=path%>/assets/imgs/logo.jpg" alt="" class="loginimg" />
+				<img src="<%=path%>/assets/imgs/student.jpg" alt="" class="loginimg" />
 				<div class="logintext">
 					<h3>学生登录</h3>
 				</div>
@@ -64,7 +64,7 @@ if (root == "/") {root="";}
 
 		<div class="logincontent teacontent hide">
 			<div class="logintop">
-				<img src="<%=path%>/assets/imgs/logo.jpg" alt="" class="loginimg" />
+				<img src="<%=path%>/assets/imgs/teacher.jpg" alt="" class="loginimg" />
 				<div class="logintext">
 					<h3>教师登录</h3>
 				</div>
@@ -88,7 +88,7 @@ if (root == "/") {root="";}
 		</div>
 		<div class="logincontent admincontent hide">
 			<div class="logintop">
-				<img src="<%=path%>/assets/imgs/logo.jpg" alt="" class="loginimg" />
+				<img src="<%=path%>/assets/imgs/admin.jpg" alt="" class="loginimg" />
 				<div class="logintext">
 					<h3>管理员登录</h3>
 				</div>

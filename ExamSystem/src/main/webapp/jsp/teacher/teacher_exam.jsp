@@ -15,7 +15,7 @@
 
 <div class="layui-main">
 	<div class="partone">
-		<div class="logo">图片</div>
+		<div class="logo"><img  style="width:100px;height:100px;" src="<%=path%>/assets/imgs/teacher.jpg"/></div>
 		<div class="logotitle">
 			<h2 class="logotitle">上机考试管理系统</h2>
 		</div>

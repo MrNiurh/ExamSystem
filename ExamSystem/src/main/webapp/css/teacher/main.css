@@ -64,3 +64,90 @@ a:hover{
     width: 300px;
     
 }
+/*表格页面*/
+.hat{
+    background-color: #efefef;
+    height: 90px;
+}
+.hat-1{
+    height: 40px;
+}
+.hat-1>h3{
+    padding-top: 10px;
+    width: 120px;
+    padding-left: 15px;
+}
+.hat-2{
+    height: 30px;
+    padding-left: 15px;
+}
+.tablectrl{
+    width: 100%;
+    
+}
+.tablectrl>td{
+    font-weight: 500;
+}
+.textline{
+    width: 150px;
+    height: 25px;
+}
+/*所有的大头*/
+.bighat{
+    height: 80px;
+    width: 100%;
+}
+.bighat>h2{
+    float: left;
+    height: 80px;
+    line-height: 80px;
+    font-weight: bold;
+}
+.tecicon{
+    width: 80px;
+    height: 80px;
+    background-image:  url('icon.jpg');
+    background:no-repeat fixed ;
+    float: left;
+}
+/*考中空界面*/
+.errorbox{
+    width: 400px;
+    height: 200px;
+    position: relative;
+    top: 150px;
+    left: 50%;
+    margin-left: -200px;
+    background-color:#CCCCD9;
+    border-radius: 10px;
+}
+.errorbox>h3{
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+.boxin{
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    width: 350px;
+    height: 130px;
+    background-color: #efefef;
+}
+.errtitle{
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+.errinfo{
+    background-color: #000;
+    color: white;
+    position: absolute;
+    width: 300px;
+    top: 60px;
+    left: 20px;
+    text-align: center;
+    border-radius: 10px;
+    height: 30px;
+    line-height: 30px;
+}

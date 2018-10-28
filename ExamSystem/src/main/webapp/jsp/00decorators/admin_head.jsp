@@ -57,8 +57,7 @@
 <script type="text/javascript">
 var root = "<%=path%>/";
 if (root == "/") {root="";}
-var abroot = "<%=basePath%>
-	";
+var abroot = "<%=basePath%>";
 </script>
 <body>
 	<div style="min-width: 1100px;">
@@ -67,24 +66,10 @@ var abroot = "<%=basePath%>
 				<a href="" id="mainlogo">上机考试管理系统</a>
 				<div id="topsec">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="">首页</a></li>
-						<li class="layui-nav-item"><a href="">教师管理</a></li>
-						<li class="layui-nav-item"><a href="javascript:;">考试清理</a>
-							<dl class="layui-nav-child">
-								<dd>
-									<a href="">考试概况</a>
-								</dd>
-								<dd>
-									<a href="">学生信息</a>
-								</dd>
-								<dd>
-									<a href="">接触锁定</a>
-								</dd>
-								<dd>
-									<a href="">通知管理</a>
-								</dd>
-							</dl></li>
-						<li class="layui-nav-item"><a href="">系统配置</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/">首页</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/teacher_manager">教师管理</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/admin_clean">考试清理</a>	</li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/system">系统配置</a></li>
 					</ul>
 				</div>
 				<div id="toprig">
@@ -101,9 +86,5 @@ var abroot = "<%=basePath%>
 		<sitemesh:body />
 	</div>
 
-	<div class="foot">
-		<h1>FOOT</h1>
-		<!-- 尾部 -->
-	</div>
 </body>
 </html>

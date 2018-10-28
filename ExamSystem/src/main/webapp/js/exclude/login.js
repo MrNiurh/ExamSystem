@@ -10,7 +10,7 @@ $(function() {
 	// 教师登录
 	$("#t_submit").click(function() {
 		var URL = root + "main/t_login";
-		var HREF ="teacher/teacher_exam";
+		var HREF ="teacher/";
 		userLogin(URL,HREF);
 	});
 	// 管理员登录
@@ -25,7 +25,6 @@ $(function() {
 <!--  -->
 function userLogin(URL,HREF) {
 	var data = $("#t_form").serialize();
-	alert(HREF);
 	$.ajax({
 		url : URL,
 		type : "post",
@@ -53,10 +52,9 @@ function binduserchange() {
 				$(this).css("color", "#0096DA").parent().siblings().children()
 						.css("color", "black");
 				var userid = $(this).attr("user")
-
+				debugger
 				if (userid == "1") {
-					$(".userstu").removeClass("hide").siblings().addClass(
-							"hide");
+					$(".stucontent").removeClass("hide").siblings().addClass("hide");
 					$(".userstu").parent().removeClass("hide")
 				} else {
 					$(".userinfo").addClass("hide")
