@@ -1,7 +1,7 @@
 <html>
 <body>
 	<%
-	String redirectPath= request.getContextPath()+"/Popup/home";	
+	String redirectPath= request.getContextPath()+"/main/login";	
 		response.sendRedirect(redirectPath);
 	%>
 	

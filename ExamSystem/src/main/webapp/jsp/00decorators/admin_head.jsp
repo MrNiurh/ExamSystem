@@ -57,7 +57,8 @@
 <script type="text/javascript">
 var root = "<%=path%>/";
 if (root == "/") {root="";}
-var abroot = "<%=basePath%>";
+var abroot = "<%=basePath%>
+	";
 </script>
 <body>
 	<div style="min-width: 1100px;">
@@ -88,7 +89,7 @@ var abroot = "<%=basePath%>";
 				</div>
 				<div id="toprig">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="">欢迎，aa</a></li>
+						<li class="layui-nav-item"><a href="">欢迎，${sessionScope.fullname}</a></li>
 						<li class="layui-nav-item"><a href=""> 修改口令 </a></li>
 						<li class="layui-nav-item"><a href="">退出</a></li>
 					</ul>
