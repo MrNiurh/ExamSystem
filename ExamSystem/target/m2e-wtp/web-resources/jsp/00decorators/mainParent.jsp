@@ -24,6 +24,8 @@
 <!-- 项目CSS -->
 <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css">
+<link href="<%=path%>/fonts/font-common/iconfont.css?uuid=${uuid}"
+	rel="stylesheet" type="text/css">
 <!-- Mainly scripts -->
 <script src="<%=path%>/js/jquery/jquery-2.1.1.min.js"></script>
 <script src="<%=path%>/js/bootstrap.min.js"></script>
@@ -34,11 +36,11 @@
 <script type="text/javascript">
 var root = "<%=path%>/";
 if (root == "/") {root="";}
-var abroot = "<%=basePath%>";
+var abroot="<%=basePath%>";
 </script>
 <body>
 
-	<div style="clear: both; min-width: 1320px; overflow-x: auto;">
+	<div>
 		<sitemesh:body />
 	</div>
 

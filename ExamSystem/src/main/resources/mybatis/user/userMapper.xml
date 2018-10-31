@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user.userMapper">
-	<!-- 学生查询 -->
+	<!-- 学生登录 -->
 	<select id="getStudent" parameterType="pd" resultType="pd">
 		SELECT *
+		from student
+		<where>
+			<if test="s_id!=null and s_id!=''">
+				stunum=#{s_id}
+			</if>
+			<if test="s_name!=null and s_name!=''">
+				and stuname=#{s_name}
+			</if>
+		</where>
 	</select>
 
-	<!-- 教师查询 -->
+	<!-- 教师登录 -->
 	<select id="getTeacher" parameterType="pd" resultType="pd">
 		SELECT *
-		from teacher where tname=#{t_name} and password = #{t_password}
+		from teacher
+		<where>
+			<if test="t_name!=null and t_name!=''">
+				tname=#{t_name}
+			</if>
+			<if test="t_password!=null and t_password!=''">
+				and password=#{t_password}
+			</if>
+		</where>
 	</select>
 
-	<!-- 管理员查询 -->
+	<!-- 管理员登录 -->
 	<select id="getAdmin" parameterType="pd" resultType="pd">
 		SELECT *
-		from teacher
+		from teacher where admin_signal=1
+		<if test="a_name!=null and a_name!=''">
+			and tname=#{a_name}
+		</if>
+		<if test="a_password!=null and a_password!=''">
+			and password = #{a_password}
+		</if>
 	</select>
 </mapper>

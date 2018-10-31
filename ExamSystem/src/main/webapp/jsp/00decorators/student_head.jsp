@@ -29,6 +29,8 @@
 	rel="stylesheet" type="text/css">
 <link href="<%=path%>/fonts/font-pingfang/font.css" rel="stylesheet"
 	type="text/css">
+<link href="<%=path%>/fonts/font-common/iconfont.css?uuid=${uuid}"
+	rel="stylesheet" type="text/css">
 
 <!-- Mainly scripts -->
 <script src="<%=path%>/js/jquery/jquery-2.1.1.min.js"></script>
@@ -57,7 +59,7 @@
 <script type="text/javascript">
 var root = "<%=path%>/";
 if (root == "/") {root="";}
-var abroot = "<%=basePath%>";
+var abroot = "<%=basePath%>	";
 </script>
 <body>
 	<div style="min-width: 1100px;">
@@ -66,13 +68,15 @@ var abroot = "<%=basePath%>";
 				<a href="" id="mainlogo">上机考试管理系统</a>
 				<div id="topsec">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="">首页</a></li>
-						<li class="layui-nav-item"><a href="">下载试卷</a></li>
-						<li class="layui-nav-item"><a href="javascript:;">上传答案</a></li>
-						<li class="layui-nav-item"><a href="">查看提交</a></li>
+						<li class="layui-nav-item"><a href=""><span class="iconfont icon-zhuye" style="color:white">首页</a></li>
+						<li class="layui-nav-item"><a href=""><span class="iconfont icon-yanjing" style="color:white">查看提交</a></li>
 					</ul>
 				</div>
-				<div id="toprig"></div>
+				<div id="toprig">
+					<ul class="layui-nav">
+						<li class="layui-nav-item"><a href="">欢迎，${sessionScope.fullname}</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

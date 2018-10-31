@@ -29,6 +29,8 @@
 	rel="stylesheet" type="text/css">
 <link href="<%=path%>/fonts/font-pingfang/font.css" rel="stylesheet"
 	type="text/css">
+<link href="<%=path%>/fonts/font-common/iconfont.css?uuid=${uuid}"
+	rel="stylesheet" type="text/css">
 
 <!-- Mainly scripts -->
 <script src="<%=path%>/js/jquery/jquery-2.1.1.min.js"></script>
@@ -66,31 +68,31 @@ var abroot = "<%=basePath%>";
 				<a href="" id="mainlogo">上机考试管理系统</a>
 				<div id="topsec">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="<%=basePath%>teacher/">首页</a></li>
-						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_create_exam">考前操作</a></li>
-						<li class="layui-nav-item"><a href="javascript:;">考中管理</a>
+						<li class="layui-nav-item"><a href="<%=basePath%>teacher/"><span class="iconfont icon-zhuye" style="color:white"></span>首页</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_create_exam"><span class="iconfont icon-chilun" style="color:white"></span>考前操作</a></li>
+						<li class="layui-nav-item"><a href="javascript:;"><span class="iconfont icon-shijian00" style="color:white"></span>考中管理</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="<%=basePath%>teacher/teacher_exam_details">考试概况</a>
+									<a href="<%=basePath%>teacher/teacher_exam_details"><span class="iconfont icon-liebiao"></span>考试概况</a>
 								</dd>
 								<dd>
-									<a href="<%=basePath%>teacher/">学生信息</a>
+									<a href="<%=basePath%>teacher/"><span class="iconfont icon-liebiao1" ></span>学生信息</a>
 								</dd>
 								<dd>
-									<a href="<%=basePath%>teacher/">接触锁定</a>
+									<a href="<%=basePath%>teacher/"><span class="iconfont icon-suo"></span>解除锁定</a>
 								</dd>
 								<dd>
-									<a href="<%=basePath%>teacher/">通知管理</a>
+									<a href="<%=basePath%>teacher/"><span class="iconfont icon-notice"></span>通知管理</a>
 								</dd>
 							</dl></li>
-						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_afterexam">考后操作</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_afterexam"><span class="iconfont icon-duihaocheckmark17" style="color:white"></span>考后操作</a></li>
 					</ul>
 				</div>
 				<div id="toprig">
 					<ul class="layui-nav">
 						<li class="layui-nav-item"><a href="">欢迎，${sessionScope.fullname}</a></li>
-						<li class="layui-nav-item"><a href=""> 修改口令 </a></li>
-						<li class="layui-nav-item"><a href="">退出</a></li>
+						<li class="layui-nav-item"><a href=""> <span class="iconfont icon-bianji1" style="color:white"></span>修改口令 </a></li>
+						<li class="layui-nav-item"><a href=""><span class="iconfont icon-tuichu1" style="color:white"></span>退出</a></li>
 					</ul>
 				</div>
 			</div>

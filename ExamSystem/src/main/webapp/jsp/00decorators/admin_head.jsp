@@ -29,6 +29,8 @@
 	rel="stylesheet" type="text/css">
 <link href="<%=path%>/fonts/font-pingfang/font.css" rel="stylesheet"
 	type="text/css">
+<link href="<%=path%>/fonts/font-common/iconfont.css?uuid=${uuid}"
+	rel="stylesheet" type="text/css">
 
 <!-- Mainly scripts -->
 <script src="<%=path%>/js/jquery/jquery-2.1.1.min.js"></script>
@@ -66,17 +68,17 @@ var abroot = "<%=basePath%>";
 				<a href="" id="mainlogo">上机考试管理系统</a>
 				<div id="topsec">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="<%=basePath%>admin/">首页</a></li>
-						<li class="layui-nav-item"><a href="<%=basePath%>admin/teacher_manager">教师管理</a></li>
-						<li class="layui-nav-item"><a href="<%=basePath%>admin/admin_clean">考试清理</a>	</li>
-						<li class="layui-nav-item"><a href="<%=basePath%>admin/system">系统配置</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/"><span class="iconfont icon-zhuye" style="color:white"></span>首页</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/teacher_manager"><span class="iconfont icon-yonghu" style="color:white"></span>教师管理</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/admin_clean"><span class="iconfont icon-qingchu" style="color:white"></span>考试清理</a>	</li>
+						<li class="layui-nav-item"><a href="<%=basePath%>admin/system"><span class="iconfont icon-banshou" style="color:white"></span>系统配置</a></li>
 					</ul>
 				</div>
 				<div id="toprig">
 					<ul class="layui-nav">
 						<li class="layui-nav-item"><a href="">欢迎，${sessionScope.fullname}</a></li>
-						<li class="layui-nav-item"><a href=""> 修改口令 </a></li>
-						<li class="layui-nav-item"><a href="">退出</a></li>
+						<li class="layui-nav-item"><a href=""><span class="iconfont icon-bianji1" style="color:white"></span> 修改口令 </a></li>
+						<li class="layui-nav-item"><a href=""><span class="iconfont icon-tuichu1" style="color:white"></span>退出</a></li>
 					</ul>
 				</div>
 			</div>

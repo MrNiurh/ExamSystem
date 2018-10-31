@@ -28,7 +28,7 @@ a:hover{
 #toprig{
     right: 0;
     position: absolute;
-    width: 30%;
+    width: 32%;
 }
 .bccolor{
     background-color: #eeeeee;
@@ -39,7 +39,6 @@ a:hover{
     float: left;
     width: 100px;
     height: 100px;
-    background-color: aqua;
     text-align: center;
     line-height: 100px;
 }/*教师端首页图标*/

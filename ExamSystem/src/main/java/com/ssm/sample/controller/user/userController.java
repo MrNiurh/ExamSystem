@@ -43,9 +43,13 @@ public class userController extends BaseController {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			student = this.userFacade.getStudent(pd);
+
 			if (student.size() != 0) {
+
 				map.put("check", "true");
+				session.setAttribute("fullname", student.get(0).getString("stuname"));
 			} else {
+
 				map.put("check", "false");
 			}
 
@@ -68,12 +72,18 @@ public class userController extends BaseController {
 		try {
 			// 获取查询结果
 			teacher = this.userFacade.getTeacher(pd);
-			session.setAttribute("fullname", teacher.get(0).getString("fullname"));
 
 			// 判断是否有结果
 			if (teacher.size() != 0) {
+				// 有返回结果
 				map.put("check", "true");
+				// 在 session 内储存姓名
+				session.setAttribute("fullname", teacher.get(0).getString("fullname"));
+				// 在 session 内存储登录状态
+				session.setAttribute("identity", "teacher");
+
 			} else {
+				// 无返回结果
 				map.put("check", "false");
 			}
 
@@ -97,9 +107,10 @@ public class userController extends BaseController {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			admin = this.userFacade.getAdmin(pd);
-			session.setAttribute("fullname", admin.get(0).getString("fullname"));
 			if (admin.size() != 0) {
 				map.put("check", "true");
+				session.setAttribute("fullname", admin.get(0).getString("fullname"));
+				session.setAttribute("identity", "admin");
 			} else {
 				map.put("check", "false");
 			}

@@ -3,8 +3,8 @@ $(function() {
 
 	// 学生登录
 	$("#s_submit").click(function() {
-		var URL = root + "#";// 处理 ajax 请求的地址
-		var HREF ="#";// 成功的地址
+		var URL = root + "main/s_login";// 处理 ajax 请求的地址
+		var HREF ="student/";// 成功的地址
 		userLogin(URL,HREF);
 	});
 	// 教师登录
@@ -15,8 +15,8 @@ $(function() {
 	});
 	// 管理员登录
 	$("#a_submit").click(function() {
-		var URL = root + "#";
-		var HREF ="#";
+		var URL = root + "main/a_login";
+		var HREF ="admin/";
 		userLogin(URL,HREF);
 	});
 
@@ -24,7 +24,7 @@ $(function() {
 
 <!--  -->
 function userLogin(URL,HREF) {
-	var data = $("#t_form").serialize();
+	var data = $(".login").serialize();
 	$.ajax({
 		url : URL,
 		type : "post",
