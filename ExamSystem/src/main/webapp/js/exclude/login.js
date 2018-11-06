@@ -52,7 +52,6 @@ function binduserchange() {
 				$(this).css("color", "#0096DA").parent().siblings().children()
 						.css("color", "black");
 				var userid = $(this).attr("user")
-				debugger
 				if (userid == "1") {
 					$(".stucontent").removeClass("hide").siblings().addClass("hide");
 					$(".userstu").parent().removeClass("hide")

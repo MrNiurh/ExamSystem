@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssm.sample.facade.base.BaseFacade;
-import com.ssm.sample.service.base.user.UserService;
+import com.ssm.sample.service.user.UserService;
 import com.ssm.sample.util.PageData;
 
 @Service("UserFacade")

@@ -45,9 +45,9 @@ public class userController extends BaseController {
 			student = this.userFacade.getStudent(pd);
 
 			if (student.size() != 0) {
-
 				map.put("check", "true");
 				session.setAttribute("fullname", student.get(0).getString("stuname"));
+				session.setAttribute("identity", "student");
 			} else {
 
 				map.put("check", "false");
@@ -81,7 +81,6 @@ public class userController extends BaseController {
 				session.setAttribute("fullname", teacher.get(0).getString("fullname"));
 				// 在 session 内存储登录状态
 				session.setAttribute("identity", "teacher");
-
 			} else {
 				// 无返回结果
 				map.put("check", "false");
