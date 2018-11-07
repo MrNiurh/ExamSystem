@@ -9,7 +9,7 @@ import com.ssm.sample.controller.base.BaseController;
 @Controller
 @RequestMapping({ "/admin" })
 public class adminController extends BaseController {
-	@RequestMapping(value = "/")
+	@RequestMapping({ "/" })
 	public ModelAndView home() {
 		ModelAndView mv = this.getModelAndView();					
 		mv.setViewName("admin/admin");

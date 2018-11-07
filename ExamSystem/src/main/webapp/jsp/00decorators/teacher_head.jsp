@@ -73,16 +73,16 @@ var abroot = "<%=basePath%>";
 						<li class="layui-nav-item"><a href="javascript:;"><span class="iconfont icon-shijian00" style="color:white"></span>考中管理</a>
 							<dl class="layui-nav-child">
 								<dd>
-									<a href="<%=basePath%>teacher/teacher_exam_details"><span class="iconfont icon-liebiao"></span>考试概况</a>
+									<a href="<%=basePath%>teacher/teacher_exam_detail"><span class="iconfont icon-liebiao"></span>考试概况</a>
 								</dd>
 								<dd>
-									<a href="<%=basePath%>teacher/"><span class="iconfont icon-liebiao1" ></span>学生信息</a>
+									<a href="<%=basePath%>teacher/teacher_student_manage"><span class="iconfont icon-liebiao1" ></span>学生信息</a>
 								</dd>
 								<dd>
-									<a href="<%=basePath%>teacher/"><span class="iconfont icon-suo"></span>解除锁定</a>
+									<a href="<%=basePath%>teacher/teacher_unlock_student"><span class="iconfont icon-suo"></span>解除锁定</a>
 								</dd>
 								<dd>
-									<a href="<%=basePath%>teacher/"><span class="iconfont icon-notice"></span>通知管理</a>
+									<a href="<%=basePath%>teacher/teacher_info_manage"><span class="iconfont icon-notice"></span>通知管理</a>
 								</dd>
 							</dl></li>
 						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_afterexam"><span class="iconfont icon-duihaocheckmark17" style="color:white"></span>考后操作</a></li>

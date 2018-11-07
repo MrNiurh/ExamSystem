@@ -5,6 +5,9 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<head>
+<title></title>
+</head>
 <div class="layui-main">
     <div class="bighat">
       <div class="tecicon"><img style="width:64px;height:64px;" src="<%=path%>/assets/imgs/teacher.jpg"/></div>
@@ -50,11 +53,7 @@
       </table>
     </div>
   </div>
-
-  
   <script>
-
-   
     layui.use('laydate', function () {
       var laydate = layui.laydate;
       //执行一个laydate实例

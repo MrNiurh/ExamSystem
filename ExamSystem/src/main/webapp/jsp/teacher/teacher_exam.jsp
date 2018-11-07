@@ -5,11 +5,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html>
-<html>
 <head>
-<base src="<%=path%>">
-<meta charset="utf-8">
 <title>教师</title>
 </head>
 

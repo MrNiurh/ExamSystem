@@ -8,15 +8,12 @@ import com.ssm.sample.controller.base.BaseController;
 
 @Controller
 @RequestMapping({ "/teacher" })
-public class teacher_examController extends BaseController {
-	/*
-	 * 
-	 * 教师主页面
-	 */
-	@RequestMapping({ "/" })
+public class TeacherExamDetailController extends BaseController{
+
+	@RequestMapping(value = "/teacher_exam_detail")
 	public ModelAndView home() {
-		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("teacher/teacher_exam");
+		ModelAndView mv = this.getModelAndView();					
+		mv.setViewName("teacher/teacher_manage_summary");
 		return mv;
 	}
 }

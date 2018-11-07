@@ -16,7 +16,6 @@ public class LoginFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		System.out.println("过滤器销毁");
 	}
 
 	@Override
@@ -26,17 +25,22 @@ public class LoginFilter implements Filter {
 		String path = requ.getServletContext().getContextPath();
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = requ.getSession(true);
-		String loginPage = config.getInitParameter("loginPage");
+		// 获取登录界面地址
+		String loginPage = requ.getServletContext().getContextPath() + config.getInitParameter("loginPage");
 		// 获取客户请求的页面
 		String requestPath = requ.getServletPath();
-		System.out.println(requestPath);
 		if (session.getAttribute("identity") == null && !requestPath.endsWith(loginPage)) {
 			res.sendRedirect(loginPage);
-
-			// request.getRequestDispatcher(loginPage).forward(request,
-			// response);
 		} else {
-			request.getRequestDispatcher("/teacher/").forward(request, response);
+			if (session.getAttribute("identity").equals("admin")) {
+				request.getRequestDispatcher(requestPath).forward(request, response);
+			}
+			if (session.getAttribute("identity").equals("teacher")) {
+				request.getRequestDispatcher(requestPath).forward(request, response);
+			}
+			if (session.getAttribute("identity").equals("student")) {
+				request.getRequestDispatcher(requestPath).forward(request, response);
+			}
 		}
 
 		chain.doFilter(request, response);
@@ -44,7 +48,7 @@ public class LoginFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("执行aaaaaaaaaaaaaaaaaaaaaaa");
+
 		this.config = fConfig;
 	}
 
