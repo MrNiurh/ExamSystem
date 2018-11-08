@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%=path%>/css/admin/admin.css">
-<title>system</title>
+<title>考试清理</title>
 </head>
 <div class="container" style="width: 90%;">
 	<h1>

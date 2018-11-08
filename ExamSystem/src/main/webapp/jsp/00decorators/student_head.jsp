@@ -68,8 +68,8 @@ var abroot = "<%=basePath%>	";
 				<a href="" id="mainlogo">上机考试管理系统</a>
 				<div id="topsec">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href=""><span class="iconfont icon-zhuye" style="color:white">首页</a></li>
-						<li class="layui-nav-item"><a href=""><span class="iconfont icon-yanjing" style="color:white">查看提交</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>student/"><span class="iconfont icon-zhuye" style="color:white">首页</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>student/student_check"><span class="iconfont icon-yanjing" style="color:white">查看提交</a></li>
 					</ul>
 				</div>
 				<div id="toprig">

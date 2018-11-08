@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
     <link rel="stylesheet" href="<%=path%>/css/admin/admin.css">
-	<title>admin</title>
+	<title>上机考试系统</title>
 </head>
 <div class="container" style="width: 90%;">
 	<h1>

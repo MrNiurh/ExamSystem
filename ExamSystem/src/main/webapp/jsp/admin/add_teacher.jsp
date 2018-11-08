@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
     <link rel="stylesheet" href="<%=path %>/css/admin/admin.css">
-	<title>add_teacher</title>
+	<title>添加教师</title>
 </head>
 <body>
 <div class="container" style="width: 90%;">

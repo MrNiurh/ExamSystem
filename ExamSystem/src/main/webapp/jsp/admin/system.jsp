@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
   	<link rel="stylesheet" href="<%=path %>/css/admin/admin.css">
-	<title>system</title>
+	<title>系统配置</title>
 </head>
 <body>
 <div class="container" style="width: 90%;">
