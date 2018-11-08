@@ -12,10 +12,10 @@
 </head>
 <body>
   <div class="body">
-      <div class="head"></div>
+      
       <div class="container">
             <div class="user">
-                    <img src="" alt="" class="userlogo">
+                    <img src="<%=path %>/assets/imgs/student.jpg" alt="" class="userlogo">
                     <div class="info">
                         <h1 class="fontweight">
                             上机考试中...

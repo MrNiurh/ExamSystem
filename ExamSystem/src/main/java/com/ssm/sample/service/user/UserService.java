@@ -15,7 +15,7 @@ public class UserService extends BaseService {
 	 * 学生
 	 */
 	public List<PageData> getStudent(PageData pd) {
-		return null;
+		return this.sqlSessionTemplate.selectList("user.userMapper.getStudent", pd);
 	}
 
 	/*
@@ -29,6 +29,6 @@ public class UserService extends BaseService {
 	 * 管理员
 	 */
 	public List<PageData> getAdmin(PageData pd) {
-		return null;
+		return this.sqlSessionTemplate.selectList("user.userMapper.getAdmin", pd);
 	}
 }

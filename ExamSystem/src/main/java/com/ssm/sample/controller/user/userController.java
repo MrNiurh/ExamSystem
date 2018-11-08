@@ -1,9 +1,13 @@
 package com.ssm.sample.controller.user;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +28,7 @@ public class userController extends BaseController {
 	UserFacade userFacade;
 
 	@RequestMapping({ "/login" })
-	public ModelAndView home() {
+	public ModelAndView home() throws IOException {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("login/login");
 		return mv;

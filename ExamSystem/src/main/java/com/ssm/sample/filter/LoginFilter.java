@@ -22,33 +22,50 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest requ = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
+		// 获取项目名
 		String path = requ.getServletContext().getContextPath();
-		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = requ.getSession(true);
 		// 获取登录界面地址
-		String loginPage = requ.getServletContext().getContextPath() + config.getInitParameter("loginPage");
+		String loginPage = config.getInitParameter("loginPage");
+		// 项目名 + 登录地址
+		String realLoginPage = requ.getServletContext().getContextPath() + config.getInitParameter("loginPage");
 		// 获取客户请求的页面
 		String requestPath = requ.getServletPath();
 		if (session.getAttribute("identity") == null && !requestPath.endsWith(loginPage)) {
-			res.sendRedirect(loginPage);
+			resp.sendRedirect(realLoginPage);
 		} else {
-			if (session.getAttribute("identity").equals("admin")) {
-				request.getRequestDispatcher(requestPath).forward(request, response);
+			if (session.getAttribute("identity").equals("student")) {
+				if (requestPath.contains("student")) {
+					request.getRequestDispatcher(requestPath).forward(request, response);
+				} else {
+					resp.sendRedirect(path + "/student/");
+				}
+
 			}
 			if (session.getAttribute("identity").equals("teacher")) {
-				request.getRequestDispatcher(requestPath).forward(request, response);
+				if (requestPath.contains("teacher")) {
+					request.getRequestDispatcher(requestPath).forward(request, response);
+				} else {
+					resp.sendRedirect(path + "/teacher/");
+				}
 			}
-			if (session.getAttribute("identity").equals("student")) {
-				request.getRequestDispatcher(requestPath).forward(request, response);
+			if (session.getAttribute("identity").equals("admin")) {
+				if (requestPath.contains("admin")) {
+					request.getRequestDispatcher(requestPath).forward(request, response);
+				} else {
+					resp.sendRedirect(path + "/admin/");
+				}
 			}
+
 		}
 
 		chain.doFilter(request, response);
+
 	}
 
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
-
 		this.config = fConfig;
 	}
 

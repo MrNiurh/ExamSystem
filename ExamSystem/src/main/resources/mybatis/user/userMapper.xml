@@ -7,7 +7,7 @@
 		from student
 		<where>
 			<if test="s_id!=null and s_id!=''">
-				stunum=#{s_id}
+				stuid=#{s_id}
 			</if>
 			<if test="s_name!=null and s_name!=''">
 				and stuname=#{s_name}
