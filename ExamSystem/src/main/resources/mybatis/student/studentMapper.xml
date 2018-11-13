@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student.studentMapper">
+	<!-- 当学生login时更新ip(传入ip,s_id） -->
+	<update parameterType="pd" id="updateStudentIp">
+		update teacher SET ip=#{stu_ip},
+		where s_id=#{s_id}
+	</update>
+
+</mapper>
