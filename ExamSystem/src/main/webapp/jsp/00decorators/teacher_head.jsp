@@ -82,7 +82,7 @@ var abroot = "<%=basePath%>";
 									<a href="<%=basePath%>teacher/teacher_unlock_student"><span class="iconfont icon-suo"></span>解除锁定</a>
 								</dd>
 								<dd>
-									<a href="<%=basePath%>teacher/teacher_info_manage"><span class="iconfont icon-notice"></span>通知管理</a>
+									<a href="<%=basePath%>teacher/teacher_notify"><span class="iconfont icon-notice"></span>通知管理</a>
 								</dd>
 							</dl></li>
 						<li class="layui-nav-item"><a href="<%=basePath%>teacher/teacher_afterexam"><span class="iconfont icon-duihaocheckmark17" style="color:white"></span>考后操作</a></li>
@@ -101,7 +101,8 @@ var abroot = "<%=basePath%>";
 	<div style="clear: both; min-width: 1320px; overflow-x: auto;">
 		<sitemesh:body />
 	</div>
-
+<input type="hidden" value="teacher_exam_mid">
+<input type="hidden" value="teacher_modify">
 
 </body>
 </html>

@@ -32,7 +32,7 @@
 	<!-- 管理员登录 -->
 	<select id="getAdmin" parameterType="pd" resultType="pd">
 		SELECT *
-		from teacher where admin_signal=1
+		from teacher where admin=1
 		<if test="a_name!=null and a_name!=''">
 			and tname=#{a_name}
 		</if>

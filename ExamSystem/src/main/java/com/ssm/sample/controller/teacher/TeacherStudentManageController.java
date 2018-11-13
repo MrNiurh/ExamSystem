@@ -9,6 +9,10 @@ import com.ssm.sample.controller.base.BaseController;
 @Controller
 @RequestMapping({ "/teacher" })
 public class TeacherStudentManageController extends BaseController{
+	
+	/*
+	 * 考中管理 >> 学生信息
+	 */
 
 	@RequestMapping(value = "/teacher_student_manage")
 	public ModelAndView home() {

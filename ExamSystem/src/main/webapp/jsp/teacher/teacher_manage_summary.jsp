@@ -13,7 +13,7 @@
 <div class="layui-main">
 	<div class="bighat">
 		<div class="tecicon">
-			<img style="width: 64px; height: 64px;"
+			<img style="width: 80px; height: 80px;"
 				src="<%=path%>/assets/imgs/teacher.jpg" />
 		</div>
 		<h2>上机考试管理</h2>

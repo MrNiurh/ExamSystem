@@ -11,7 +11,8 @@
 
     <div class="layui-main">
         <div class="bighat">
-            <div class="tecicon">头像</div>
+            <div class="tecicon"><img style="width: 80px; height: 80px;"
+				src="<%=path%>/assets/imgs/teacher.jpg" /></div>
             <h2>上机考试管理</h2>
         </div>
         <form class="modifyall">

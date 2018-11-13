@@ -9,11 +9,16 @@ import com.ssm.sample.controller.base.BaseController;
 @Controller
 @RequestMapping({ "/teacher" })
 public class TeacherUnlockStudentController extends BaseController{
+	
+	/*
+	 * 考中管理 >> 解除锁定
+	 * 
+	 */
 
-	@RequestMapping(value = "/teacher_student_manager")
+	@RequestMapping(value = "/teacher_unlock_student")
 	public ModelAndView home() {
 		ModelAndView mv = this.getModelAndView();					
-		mv.setViewName("teacher/teacher_manage_student");
+		mv.setViewName("teacher/teacher_manage_unlock");
 		return mv;
 	}
 }
