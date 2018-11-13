@@ -40,17 +40,17 @@
 		id="selectinfoStudent">
 		SELECT
 		* from student where test_id=#{test_id}
-		<if test="s_stunum != null and s_stunum != ''">stunum=#{s_stunum}</if>
-		<if test="s_stuname != null and s_stuname != ''">stuname=#{s_stuname}</if>
-		<if test="s_stuclass != null and s_stuclass != ''">stuclass=#{s_stuclass}</if>
+		<if test="s_stunum != null and s_stunum != ''">and stunum=#{s_stunum}</if>
+		<if test="s_stuname != null and s_stuname != ''">and stuname=#{s_stuname}</if>
+		<if test="s_stuclass != null and s_stuclass != ''">and stuclass=#{s_stuclass}</if>
 	</select>
 
 	<!-- 查找学生(通过ip) -->
 	<select resultType="pd" parameterType="String"
-		id="selectipStudent">
+		id="selectStudentByIp">
 		SELECT
 		* from student where test_id=#{test_id}
-		<if test=" ip !=null and ip !=''">ip=#{s_ip}</if>
+		<if test=" ip !=null and ip !=''">and ip=#{s_ip}</if>
 	</select>
 
 	<!-- 添加通知（需要考试id） -->

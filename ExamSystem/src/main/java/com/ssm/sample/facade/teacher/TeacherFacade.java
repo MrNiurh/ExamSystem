@@ -1,0 +1,91 @@
+package com.ssm.sample.facade.teacher;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
+import org.springframework.stereotype.Service;
+
+import com.ssm.sample.facade.base.BaseFacade;
+import com.ssm.sample.service.teacher.TeacherService;
+import com.ssm.sample.util.PageData;
+
+@Service("TeacherFacade")
+public class TeacherFacade extends BaseFacade {
+
+	@Autowired
+	TeacherService teacherService;
+
+	/*
+	 * 添加考试
+	 */
+	public boolean insertTest(PageData pd) {
+		return this.teacherService.insertTest(pd);
+	}
+
+	/*
+	 * 添加试卷
+	 */
+	public boolean updateaddfile(PageData pd) {
+		return this.teacherService.updateaddfile(pd);
+	}
+
+	/*
+	 * 查询考试人数
+	 */
+	public List<PageData> selectStudent(PageData pd) {
+		return this.teacherService.selectStudent(pd);
+	}
+
+	/*
+	 * 查询登录人数
+	 * 
+	 */
+	public List<PageData> selectLoginStudent(PageData pd) {
+		return this.teacherService.selectLoginStudent(pd);
+	}
+
+	/*
+	 * 查询提交答案的学生个数
+	 * 
+	 */
+	public List<PageData> selectSubmitStudent(PageData pd) {
+		return this.teacherService.selectSubmitStudent(pd);
+	}
+
+	/*
+	 * 查找学生
+	 */
+	public List<PageData> selectinfoStudent(PageData pd) {
+		return this.teacherService.selectinfoStudent(pd);
+	}
+
+	/*
+	 * 
+	 * 通过ip查找学生
+	 */
+	public List<PageData> selectStudentByIp(PageData pd) {
+		return this.teacherService.selectStudentByIp(pd);
+	}
+
+	/*
+	 * 添加通知
+	 */
+	public boolean insertTestmsg(PageData pd) {
+		return this.teacherService.insertTestmsg(pd);
+	}
+
+	/*
+	 * 删除通知
+	 */
+	public boolean deleteTestmsg(PageData pd) {
+		return this.teacherService.deleteTestmsg(pd);
+	}
+
+	/*
+	 * 添加学生
+	 */
+	public boolean insertStudent(PageData pd) {
+		return this.teacherService.insertStudent(pd);
+	}
+}
