@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ssm.sample.controller.base.BaseController;
 import com.ssm.sample.facade.user.UserFacade;
+import com.ssm.sample.util.MD5;
 import com.ssm.sample.util.PageData;
 
 @Controller
@@ -41,13 +42,13 @@ public class userController extends BaseController {
 	@RequestMapping({ "/s_login" })
 	public Object s_Login() {
 		PageData pd = this.getPageData();
+		pd.getString("");
 
 		List<PageData> student = new ArrayList<>();
 
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			student = this.userFacade.getStudent(pd);
-
 			if (student.size() != 0) {
 				map.put("check", "true");
 				session.setAttribute("fullname", student.get(0).getString("stuname"));
@@ -75,9 +76,11 @@ public class userController extends BaseController {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			// 获取查询结果
-			teacher = this.userFacade.getTeacher(pd);
-
+			String t_password = MD5.md5(pd.getString("t_password"));
+			pd.put("t_password", t_password);
 			// 判断是否有结果
+			teacher = this.userFacade.getTeacher(pd);
+			
 			if (teacher.size() != 0) {
 				// 有返回结果
 				map.put("check", "true");
@@ -85,6 +88,7 @@ public class userController extends BaseController {
 				session.setAttribute("fullname", teacher.get(0).getString("fullname"));
 				// 在 session 内存储登录状态
 				session.setAttribute("identity", "teacher");
+				session.setAttribute("teacher_id", teacher.get(0).getString("id"));
 			} else {
 				// 无返回结果
 				map.put("check", "false");
@@ -109,6 +113,8 @@ public class userController extends BaseController {
 
 		Map<String, String> map = new HashMap<String, String>();
 		try {
+			String a_password = MD5.md5(pd.getString("a_password"));
+			pd.put("a_password", a_password);
 			admin = this.userFacade.getAdmin(pd);
 			if (admin.size() != 0) {
 				map.put("check", "true");

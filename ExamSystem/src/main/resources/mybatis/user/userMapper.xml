@@ -21,7 +21,7 @@
 		from teacher
 		<where>
 			<if test="t_name!=null and t_name!=''">
-				tname=#{t_name}
+				and tname=#{t_name}
 			</if>
 			<if test="t_password!=null and t_password!=''">
 				and password=#{t_password}

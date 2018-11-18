@@ -24,8 +24,6 @@ public class PageData extends HashMap implements Map {
 		PageData a=new PageData();
 		a.put("key", "asdas");
 		list.add(a);
-//		list.add("asdas1");
-//		list.add("asdas2");
 		pageData.put("list", list);
 		pageData.put("222", "23232");
 		System.err.println(pageData);

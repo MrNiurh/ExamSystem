@@ -67,4 +67,16 @@ public class TeacherService extends BaseService {
 		return result > 0;
 	}
 
+	public List<PageData> selectTests() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectTests");
+		return list;
+	}
+
+	public List<PageData> selectTeacherById(int id) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectTeacherById", id);
+		return list;
+	}
+
 }

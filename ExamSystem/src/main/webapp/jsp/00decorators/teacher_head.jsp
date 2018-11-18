@@ -90,7 +90,7 @@ var abroot = "<%=basePath%>";
 				</div>
 				<div id="toprig">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="">欢迎，${sessionScope.fullname}</a></li>
+						<li class="layui-nav-item"><a href="">欢迎，${fullname}</a></li>
 						<li class="layui-nav-item"><a href=""> <span class="iconfont icon-bianji1" style="color:white"></span>修改口令 </a></li>
 						<li class="layui-nav-item"><a href=""><span class="iconfont icon-tuichu1" style="color:white"></span>退出</a></li>
 					</ul>

@@ -36,31 +36,27 @@ public class LoginFilter implements Filter {
 			resp.sendRedirect(realLoginPage);
 		} else {
 			if (session.getAttribute("identity").equals("student")) {
-				if (requestPath.contains("student")) {
-					request.getRequestDispatcher(requestPath).forward(request, response);
-				} else {
+				if (!requestPath.contains("/student/")) {
+					//requ.getRequestDispatcher(requestPath).forward(request, response);
 					resp.sendRedirect(path + "/student/");
 				}
 
 			}
 			if (session.getAttribute("identity").equals("teacher")) {
-				if (requestPath.contains("teacher")) {
-					request.getRequestDispatcher(requestPath).forward(request, response);
-				} else {
+				if (!requestPath.contains("/teacher/")) {
+					//requ.getRequestDispatcher(requestPath).forward(request, response);
 					resp.sendRedirect(path + "/teacher/");
 				}
 			}
 			if (session.getAttribute("identity").equals("admin")) {
-				if (requestPath.contains("admin")) {
-					request.getRequestDispatcher(requestPath).forward(request, response);
-				} else {
+				if (!requestPath.contains("/admin/")) {
+					//requ.getRequestDispatcher(requestPath).forward(request, response);
 					resp.sendRedirect(path + "/admin/");
 				}
 			}
 
 		}
 		chain.doFilter(request, response);
-
 	}
 
 	@Override

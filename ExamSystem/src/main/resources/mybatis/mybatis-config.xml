@@ -29,5 +29,8 @@
 			<property name="dialect" value="mysql" />
 			<property name="pageSqlId" value=".*listPage.*" />
 		</plugin>
+
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+		</plugin>
 	</plugins>
 </configuration>

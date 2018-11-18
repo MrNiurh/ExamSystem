@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin.adminMapper">
-<!-- 查询所有教师 -->
+	<!-- 查询所有教师 -->
 	<select parameterType="pd" resultType="pd" id="getAllTeacher">
-		select * from teacher where tname != 'admin'
+		select * from
+		teacher where tname != 'admin'
 	</select>
 	<!-- 添加教师： -->
 	<insert parameterType="pd" id="insertTeacher">
 		insert into
-		teacher(tname,password,fullname,admin_signal)
-		values(#{t_name},#{t_password},#{t_fullname},#{t_admin_signal})
+		teacher(tname,password,fullname,admin)
+		values(#{t_name},#{t_password},#{t_fullname},#{admin})
 	</insert>
 
 	<!-- 删除教师(需要传入教师id) -->
-	<delete parameterType="String" id="deleteTeacherById">
+	<delete parameterType="pd" id="deleteTeacherById">
 		DELETE FROM teacher WHERE
 		t_id=#{t_id}
 	</delete>
@@ -26,16 +27,21 @@
 		admin_signal = #{t_admin_signal} where
 		tnum=#{teacher_id}
 	</update>
+	
+	<!-- 查询系统配置信息  -->
+	<select id="selectSystem" resultType="pd">
+		select * from system
+	</select>
 
 	<!-- 更新系统配置信息 -->
 	<update parameterType="pd" id="updateSystem">
 		update system SET time_interval=
-		#{ sys_time_interval },page_record =
-		#{sys_page_record}, test_maxtime=
-		#{sys_test_maxtime}, file_minsize =
-		#{sys_ file_minsize },
-		file_maxsize=#{sys_ file_maxsize } ,tea_power
-		=#{sys_tea_power}
+		#{time_interval},page_record =
+		#{page_record}, test_maxtime=
+		#{test_maxtime}, file_minsize =
+		#{file_minsize},
+		file_maxsize=#{file_maxsize},teacher_right
+		=#{teacher_right}
 	</update>
 
 	<!-- 重置密码(需要传入教师id) -->

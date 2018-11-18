@@ -2,7 +2,6 @@ package com.ssm.sample.service.user;
 
 import java.util.List;
 
-import org.junit.Test;
 import org.springframework.stereotype.Service;
 
 import com.ssm.sample.service.base.BaseService;

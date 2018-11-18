@@ -41,6 +41,10 @@ public class AdminFacade extends BaseFacade {
 	public boolean updateTeacherById(PageData pd) {
 		return this.adminService.updateTeacherById(pd);
 	}
+	
+	public List<PageData> selectSystem(){
+		return this.adminService.selectSystem();
+	}
 
 	/*
 	 * 更新系统配置信息

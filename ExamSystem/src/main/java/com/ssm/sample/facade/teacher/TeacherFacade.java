@@ -88,4 +88,19 @@ public class TeacherFacade extends BaseFacade {
 	public boolean insertStudent(PageData pd) {
 		return this.teacherService.insertStudent(pd);
 	}
+
+	/*
+	 * 查询所有考试
+	 */
+	public List<PageData> selectTests() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.selectTests();
+		return list;
+	}
+	
+	public List<PageData> selectTeacherById(int id){
+		List<PageData> list =this.teacherService.selectTeacherById(id);
+		return list;
+		
+	}
 }

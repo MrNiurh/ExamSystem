@@ -46,4 +46,9 @@ public class AdminService extends BaseService {
 		return this.sqlSessionTemplate.selectList("admin.adminMapper.getAllTeacher", pd);
 	}
 
+	public List<PageData> selectSystem() {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.selectList("admin.adminMapper.selectSystem");
+	}
+
 }

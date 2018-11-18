@@ -8,7 +8,7 @@ import com.ssm.sample.controller.base.BaseController;
 
 @Controller
 @RequestMapping({ "/teacher" })
-public class TeacherInfoManagerController extends BaseController{
+public class TeacherManageNotifyController extends BaseController{
 	
 	/*
 	 * 考中管理 >> 通知管理

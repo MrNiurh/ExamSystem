@@ -74,7 +74,7 @@ var abroot = "<%=basePath%>	";
 				</div>
 				<div id="toprig">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="">欢迎，${sessionScope.fullname}</a></li>
+						<li class="layui-nav-item"><a href="">欢迎，${fullname}</a></li>
 					</ul>
 				</div>
 			</div>
