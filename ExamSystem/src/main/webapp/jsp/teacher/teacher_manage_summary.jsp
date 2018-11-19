@@ -20,9 +20,9 @@
 	</div>
 	<div class="summary">
 		<span class="bigtext colowh">exam进行情况：</span><br> <span
-			class="newtext colowh">参加考试学生总数： </span><br> <span
-			class="newtext colowh">已登录学生数量： ， 未登录学生数量： </span><br> <span
-			class="newtext colowh">已登录学生中，提交文件学生数量：， 未提交文件学生数量： </span>
+			class="newtext colowh">参加考试学生总数：${allStudent} </span><br> <span
+			class="newtext colowh">已登录学生数量： ${loginStudent}， 未登录学生数量：${noLoginStudent} </span><br> <span
+			class="newtext colowh">已登录学生中，提交文件学生数量：${submitStudent}， 未提交文件学生数量：${noSubmitStudent} </span>
 	</div>
 </div>
 

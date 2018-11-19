@@ -7,15 +7,22 @@
 		test(testname,starttime,auto_begin,tea_id) values(#{testname
 		},#{starttime},#{auto_begin},#{t_id})
 	</insert>
-	
+
 	<!-- 通过 id 查询教师 -->
-	<select id="selectTeacherById" parameterType="int" resultType="pd">
+	<select id="selectTeacherById" parameterType="int"
+		resultType="pd">
 		select * from teacher where id=#{id}
 	</select>
-	
+
 	<!-- 查询考试 -->
 	<select id="selectTests" resultType="pd">
 		select * from test
+	</select>
+
+	<!-- 查询正在进行考试 -->
+	<select id="selectNowTest" resultType="pd">
+		select * from test where
+		test_signal = 1
 	</select>
 
 	<!-- 更新添加考试试卷（需要传入考试id） -->
@@ -24,26 +31,42 @@
 	</update>
 
 	<!-- 1查询参加考试人数 -->
-	<select resultType="pd" parameterType="pd"
-		id="selectStudent"> SELECT count(stuid)
-		from student where test_id=#{test_id}
+	<select resultType="pd" parameterType="pd" id="selectStudent"> SELECT
+		count(stuid)
+		from student where testid=#{testid}
 	</select>
 
 	<!-- 2查询登录人数(调用方法获取ip是否为空) -->
 	<select resultType="pd" parameterType="pd"
 		id="selectLoginStudent">
 		SELECT count(stuid)
-		from student where ip !=null
+		from student where ip  is not null
 		and
-		test_id=#{test_id}
+		testid=#{testid}
 	</select>
 
-	<!-- 3查询提交答案的个数(调用方法获取testresult是否为空) -->
+	<!-- 3查询未登录人数(调用方法获取ip是否为空) -->
+	<select resultType="pd" parameterType="pd"
+		id="selectNoLoginStudent">
+		SELECT count(stuid)
+		from student where ip is null
+		and
+		testid=#{testid}
+	</select>
+
+	<!-- 4查询提交答案的个数(调用方法获取testresult是否为空) -->
 	<select resultType="pd" parameterType="pd"
 		id="selectSubmitStudent">
 		SELECT
-		* from student where testresult!=null
-		and test_id=#{test_id}
+		count(stuid) from student where upload is not null
+		and testid=#{testid} and ip is not null
+	</select>
+	<!-- 4查询未提交答案的个数(调用方法获取testresult是否为空) -->
+	<select resultType="pd" parameterType="pd"
+		id="selectNoSubmitStudent">
+		SELECT
+		count(stuid) from student where upload is null
+		and testid=#{testid} and ip is not null
 	</select>
 	<!-- 查找学生(通过学号姓名班级) -->
 	<select resultType="pd" parameterType="pd"

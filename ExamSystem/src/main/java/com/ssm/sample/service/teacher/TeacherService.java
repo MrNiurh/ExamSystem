@@ -36,7 +36,8 @@ public class TeacherService extends BaseService {
 
 	public List<PageData> selectSubmitStudent(PageData pd) {
 		// TODO Auto-generated method stub
-		return this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectSubmitStudent", pd);
+		List<PageData> list =this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectSubmitStudent", pd);
+		return list;
 	}
 
 	public List<PageData> selectinfoStudent(PageData pd) {
@@ -76,6 +77,18 @@ public class TeacherService extends BaseService {
 	public List<PageData> selectTeacherById(int id) {
 		// TODO Auto-generated method stub
 		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectTeacherById", id);
+		return list;
+	}
+
+	public List<PageData> noLoginStudent(PageData pd) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectNoLoginStudent", pd);
+		return list;
+	}
+
+	public List<PageData> noSubmitStudent(PageData pd) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectNoSubmitStudent", pd);
 		return list;
 	}
 

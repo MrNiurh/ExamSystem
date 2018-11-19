@@ -3,8 +3,8 @@
 <mapper namespace="student.studentMapper">
 	<!-- 当学生login时更新ip(传入ip,s_id） -->
 	<update parameterType="pd" id="updateStudentIp">
-		update teacher SET ip=#{stu_ip},
-		where s_id=#{s_id}
+		update student SET ip=#{ip} where
+		testid=#{testid} and stuid=#{stuid}
 	</update>
 
 </mapper>

@@ -1,13 +1,14 @@
 package com.ssm.sample.controller.user;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssm.sample.controller.base.BaseController;
+import com.ssm.sample.facade.student.StudentFacade;
 import com.ssm.sample.facade.user.UserFacade;
 import com.ssm.sample.util.MD5;
 import com.ssm.sample.util.PageData;
@@ -27,11 +29,17 @@ public class userController extends BaseController {
 
 	@Autowired
 	UserFacade userFacade;
+	@Autowired
+	StudentFacade studentFacade;
 
 	@RequestMapping({ "/login" })
 	public ModelAndView home() throws IOException {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("login/login");
+
+		ServletContext application = request.getSession().getServletContext();
+		// 先默认一个考试 id
+		application.setAttribute("testid", 1);
 		return mv;
 	}
 
@@ -42,7 +50,6 @@ public class userController extends BaseController {
 	@RequestMapping({ "/s_login" })
 	public Object s_Login() {
 		PageData pd = this.getPageData();
-		pd.getString("");
 
 		List<PageData> student = new ArrayList<>();
 
@@ -56,6 +63,21 @@ public class userController extends BaseController {
 			} else {
 
 				map.put("check", "false");
+			}
+
+			try {
+				/*
+				 * 插入 ip
+				 */
+				ServletContext application = request.getSession().getServletContext();
+				String ip = InetAddress.getLocalHost().getHostAddress().toString();
+				pd.put("stuid", student.get(0).getString("stuid"));
+				System.out.println(student.get(0).getString("stuid"));
+				pd.put("testid", application.getAttribute("testid"));
+				this.studentFacade.updateStudentIp(pd);
+			} catch (UnknownHostException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 
 		} catch (Exception e) {
@@ -80,7 +102,7 @@ public class userController extends BaseController {
 			pd.put("t_password", t_password);
 			// 判断是否有结果
 			teacher = this.userFacade.getTeacher(pd);
-			
+
 			if (teacher.size() != 0) {
 				// 有返回结果
 				map.put("check", "true");
@@ -89,6 +111,7 @@ public class userController extends BaseController {
 				// 在 session 内存储登录状态
 				session.setAttribute("identity", "teacher");
 				session.setAttribute("teacher_id", teacher.get(0).getString("id"));
+
 			} else {
 				// 无返回结果
 				map.put("check", "false");

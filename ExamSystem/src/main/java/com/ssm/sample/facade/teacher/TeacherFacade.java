@@ -50,7 +50,8 @@ public class TeacherFacade extends BaseFacade {
 	 * 
 	 */
 	public List<PageData> selectSubmitStudent(PageData pd) {
-		return this.teacherService.selectSubmitStudent(pd);
+		List<PageData> list = this.teacherService.selectSubmitStudent(pd);
+		return list;
 	}
 
 	/*
@@ -97,10 +98,31 @@ public class TeacherFacade extends BaseFacade {
 		List<PageData> list = this.teacherService.selectTests();
 		return list;
 	}
-	
-	public List<PageData> selectTeacherById(int id){
-		List<PageData> list =this.teacherService.selectTeacherById(id);
+
+	/*
+	 * 根据 id 查询教师
+	 */
+	public List<PageData> selectTeacherById(int id) {
+		List<PageData> list = this.teacherService.selectTeacherById(id);
 		return list;
-		
+
+	}
+
+	/*
+	 * 查询未登录学生
+	 */
+	public List<PageData> selectNoLoginStudent(PageData pd) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.noLoginStudent(pd);
+		return list;
+	}
+
+	/*
+	 * 查询未提交学生数
+	 */
+	public List<PageData> selectNoSubmitStudent(PageData pd) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.noSubmitStudent(pd);
+		return list;
 	}
 }
