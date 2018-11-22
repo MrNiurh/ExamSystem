@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -31,37 +32,42 @@ if (root == "/") {root="";}
 		<li role="presentation"><a href="javascript:void(0)" user="3"
 			class="userlogin">管理员登录</a></li>
 	</ul>
-	<div class="userinfo ">
-		<div user="1" class="userstu ">
-			<h4>当前没有进行的考试</h4>
+	<c:if test="${testid == null }">
+		<div class="userinfo ">
+			<div user="1" class="userstu ">
+				<h4>当前没有进行的考试</h4>
+			</div>
 		</div>
-	</div>
+	</c:if>
 	<div>
-		<div class="logincontent stucontent">
-			<div class="logintop">
-				<img src="<%=path%>/assets/imgs/student.jpg" alt="" class="loginimg" />
-				<div class="logintext">
-					<h3>学生登录</h3>
-				</div>
-			</div>
+		<c:if test="${testid != null }">
+			<div class="logincontent stucontent">
 
-			<div class="formbox">
-				<div class="form">
-					<form action="" method="post" class="login">
-						<p>
-							<input type="text" name="s_id" placeholder="  学号"
-								style="margin-bottom: 10px;"></br> <input name="s_name"
-								type="text" placeholder="  姓名">
-						</p>
-						<input class="btn btn-primary" id="s_submit" value="登录">
-
-					</form>
+				<div class="logintop">
+					<img src="<%=path%>/assets/imgs/student.jpg" alt=""
+						class="loginimg" />
+					<div class="logintext">
+						<h3>学生登录</h3>
+					</div>
 				</div>
 
+				<div class="formbox">
+					<div class="form">
+						<form action="" method="post" class="login">
+							<p>
+								<input type="text" name="s_id" placeholder="  学号"
+									style="margin-bottom: 10px;"></br> <input name="s_name"
+									type="text" placeholder="  姓名">
+							</p>
+							<input class="btn btn-primary" id="s_submit" value="登录">
+
+						</form>
+					</div>
+
+				</div>
+
 			</div>
-
-		</div>
-
+		</c:if>
 		<div class="logincontent teacontent hide">
 			<div class="logintop">
 				<img src="<%=path%>/assets/imgs/teacher.jpg" alt="" class="loginimg" />

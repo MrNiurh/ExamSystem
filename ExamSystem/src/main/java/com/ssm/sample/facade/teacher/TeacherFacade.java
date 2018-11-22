@@ -125,8 +125,8 @@ public class TeacherFacade extends BaseFacade {
 		List<PageData> list = this.teacherService.noSubmitStudent(pd);
 		return list;
 	}
-	
-	public List<PageData> selectAllStudent(PageData pd){
+
+	public List<PageData> selectAllStudent(PageData pd) {
 		List<PageData> list = this.teacherService.selectAllStudent(pd);
 		return list;
 	}
@@ -135,6 +135,36 @@ public class TeacherFacade extends BaseFacade {
 		// TODO Auto-generated method stub
 		List<PageData> list = this.teacherService.selectNowTest();
 		return list;
+	}
+
+	public List<PageData> selectTestById(String testid) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.selectTestById(testid);
+		return list;
+	}
+	/*
+	 * 更新考试信息
+	 */
+	public boolean updateTest(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.teacherService.updateTest(pd);
+	}
+
+	/*
+	 * 查询考后
+	 */
+	public List<PageData> selectAfterTest() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.selectAfterTest();
+		return list;
+	}
+
+	/*
+	 * 更新标志位
+	 */
+	public boolean updateSignal(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.teacherService.updateSignal(pd);
 	}
 
 }

@@ -36,7 +36,7 @@ public class TeacherService extends BaseService {
 
 	public List<PageData> selectSubmitStudent(PageData pd) {
 		// TODO Auto-generated method stub
-		List<PageData> list =this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectSubmitStudent", pd);
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectSubmitStudent", pd);
 		return list;
 	}
 
@@ -91,8 +91,8 @@ public class TeacherService extends BaseService {
 		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectNoSubmitStudent", pd);
 		return list;
 	}
-	
-	public List<PageData> selectAllStudent(PageData pd){
+
+	public List<PageData> selectAllStudent(PageData pd) {
 		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectAllStudent", pd);
 		return list;
 	}
@@ -101,6 +101,29 @@ public class TeacherService extends BaseService {
 		// TODO Auto-generated method stub
 		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectNowTest");
 		return list;
+	}
+
+	public List<PageData> selectTestById(String testid) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectTestById", testid);
+		return list;
+	}
+
+	public boolean updateTest(PageData pd) {
+		// TODO Auto-generated method stub
+
+		return this.sqlSessionTemplate.update("teacher.teacherMapper.updateTest", pd) > 0;
+	}
+
+	public List<PageData> selectAfterTest() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectAfterTest");
+		return list;
+	}
+
+	public boolean updateSignal(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.update("teacher.teacherMapper.updateSignal", pd) > 0;
 	}
 
 }

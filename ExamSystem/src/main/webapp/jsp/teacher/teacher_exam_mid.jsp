@@ -17,10 +17,10 @@
 		<h2>上机考试管理</h2>
 	</div>
 </div>
-<div class="errorbox">
-	<h3>发生错误!</h3>
+<div class="errorbox" style="width:420px">
+	<h3>没有进行中的考试，不能进行考中管理</h3>
 	<div class="boxin">
-		<span class="errtitle">错误信息:</span> <span class="errinfo">没有进行中的考试，不能进行考中管理。</span>
+		<span class="errtitle">错误信息:</span> <span class="errinfo"></span>
 	</div>
 </div>
 

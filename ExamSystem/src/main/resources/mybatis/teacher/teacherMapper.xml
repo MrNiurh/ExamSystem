@@ -8,15 +8,28 @@
 		},#{starttime},#{auto_begin},#{t_id})
 	</insert>
 
+	<!-- 更新考试(需要传入教师id) -->
+	<insert parameterType="pd" id="updateTest">
+		update
+		test set
+		testname=#{testname},starttime=#{starttime},auto_begin=#{auto_begin},tea_id=#{tea_id}
+		where testid=#{testid}
+	</insert>
+
 	<!-- 通过 id 查询教师 -->
 	<select id="selectTeacherById" parameterType="int"
 		resultType="pd">
 		select * from teacher where id=#{id}
 	</select>
 
-	<!-- 查询考试 -->
+	<!-- 查询所有考试 -->
 	<select id="selectTests" resultType="pd">
 		select * from test
+	</select>
+	<!-- 根据 id 查询考试 -->
+	<select id="selectTestById" resultType="pd">
+		select * from test where
+		testid = #{testid}
 	</select>
 
 	<!-- 查询正在进行考试 -->
@@ -24,6 +37,16 @@
 		select * from test where
 		test_signal = 1
 	</select>
+	<!-- 查询考后 -->
+	<select id="selectAfterTest" resultType="pd">
+		select * from test where
+		test_signal >= 1
+	</select>
+	<!-- 更新标志位 -->
+	<update id="updateSignal" parameterType="pd">
+		update test set
+		test_signal=#{test_signal} where testid= #{testid}
+	</update>
 
 	<!-- 更新添加考试试卷（需要传入考试id） -->
 	<update parameterType="pd" id="updateaddfile"> update teacher SET testfile=
@@ -49,7 +72,7 @@
 	<select resultType="pd" parameterType="pd"
 		id="selectNoLoginStudent">
 		SELECT count(stuid)
-		from student where ip is null and ip !=""
+		from student where ip is null or ip =""
 		and
 		testid=#{testid}
 	</select>

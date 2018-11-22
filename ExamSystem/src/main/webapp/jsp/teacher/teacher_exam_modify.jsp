@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -7,6 +8,8 @@
 %>
 <head>
 <title>考试编辑</title>
+<script type="text/javascript"
+	src="<%=path%>/js/teacher/teacher_exam_modify.js"></script>
 </head>
 
 <div class="layui-main">
@@ -17,13 +20,24 @@
 		</div>
 		<h2>上机考试管理</h2>
 	</div>
-	<form class="modifyall" style="margin-top: 20px;">
+	<form class="modifyall" id="updateForm" style="margin-top: 20px;">
 		<span class="newh3">编辑考试信息</span><br> <span class="newtext">考试名称：</span>
-		<input type="text" value="" class="textline"> <span
+		<input type="text" name="testname" id="testname"
+			value="${editTest.get('testname')}" class="textline"> <span
 			class="newtext">考试时间：</span> <input type="text" id="timset"
-			class="textline"><br> <input type="checkbox"
-			name="zidong" class="po"><span class="newtext">自动开始</span><br>
-		<input type="submit" class="layui-btn layui-btn-sm " value="修改">
+			name="starttime" class="textline"
+			value="${editTest.get('starttime')}"><br>
+		<c:if test="${editTest.get('auto_begin') == 0}">
+			<input type="checkbox" id="auto_begin" class="po">
+		</c:if>
+		<c:if test="${editTest.get('auto_begin') == 1}">
+			<input type="checkbox" id="auto_begin" checked class="po">
+		</c:if>
+		<input type="hidden" name="auto_begin" id="begin"> <input
+			type="hidden" name="tea_id" value="${teacher_id}"> <input
+			type="hidden" name="testid" value="${editTest.get('testid')}">
+		<span class="newtext">自动开始</span><br> <input type="button"
+			id="update" class="layui-btn layui-btn-sm " value="修改">
 	</form>
 	<form class="modifyall">
 		<span class="newh3">上传试卷</span><br> <input type="file"
@@ -35,9 +49,23 @@
 		<span class="newh3">导入学生名单</span><br> <span class="newtext">目前设定参加此次考试的学生人数：</span><br>
 		<input type="submit" class="layui-btn layui-btn-sm  po" value="继续导入">
 	</form>
-	<form class="modifyall">
-		<span class="newh3">开启考试</span><br> <span class="newtext">考试（exam）正在进行中，本系统不允许同时进行多场考试。</span>
-	</form>
+	<c:if test="${testid ==null }">
+		<div class="modifyall">
+			<button class="btn btn-primary" name="${editTest.get('testid')}"
+				style="margin-top: 30px" id="startTest">
+				<i class="iconfont icon-xiayiye"></i>开启考试
+			</button>
+			<br>
+		</div>
+	</c:if>
+	<c:if test="${testid != null }">
+		<div class="modifyall">
+			<p class="newtext" style="margin-top: 30px">
+				考试 <span style="font-weight: bold; font-size: 1.3em">${appTestName}</span>
+				正在进行中，本系统不允许同时进行多场考试。
+			</p>
+		</div>
+	</c:if>
 </div>
 
 <script>
@@ -47,7 +75,6 @@
 		laydate.render({
 			elem : '#timset',
 			type : 'datetime'
-
 		});
 	});
 </script>

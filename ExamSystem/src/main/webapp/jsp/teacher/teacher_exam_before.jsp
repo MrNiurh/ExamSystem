@@ -28,10 +28,9 @@
 				<input type="text" name="testname" size="20" placeholder="考试名称*"
 					class="textline" name="testname" id="testname"> <input
 					type="text" id="time1" placeholder="考试时间" class="textline"
-					name="starttime"> <input type="checkbox" 
-					id="auto_begin"><span>自动开始</span> <input
-					type="hidden" name="auto_begin" value="0" id="begin"> <input
-					type="hidden" value="${teacher_id}" name="t_id">
+					name="starttime"> <input type="checkbox" id="auto_begin"><span>自动开始</span>
+				<input type="hidden" name="auto_begin" value="0" id="begin">
+				<input type="hidden" value="${teacher_id}" name="t_id">
 				<button class="layui-btn layui-btn-sm layui-btn-normal" id="addTest">添加</button>
 			</div>
 		</form>
@@ -45,10 +44,10 @@
 				<col width="10%">
 				<col width="10%">
 				<col width="9%">
-				<col width="9%">
-				<col width="9%">
-				<col width="9%">
-				<col width="5%">
+				<col width="8%">
+				<col width="8%">
+				<col width="8%">
+				<col width="8%">
 			</colgroup>
 			<tr class="tablectrl">
 				<td>考试名称</td>
@@ -60,25 +59,57 @@
 				<td>已结束</td>
 				<td>已归档</td>
 				<td>已清理</td>
-				<td></td>
+				<td>编辑</td>
 			</tr>
 			<c:forEach items="${tests}" var="test">
 				<tr>
 					<td>${test.get('testname')}</td>
 					<td>${test.get('starttime')}</td>
 					<td>${test.get('teacherName')}</td>
+					<!-- 上传试卷 -->
 					<td></td>
+					<!-- 自动开始 -->
 					<c:if test="${test.get('auto_begin') == 0 }">
 						<td>X</td>
 					</c:if>
 					<c:if test="${test.get('auto_begin') == 1 }">
 						<td>√</td>
 					</c:if>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><a href="<%=basePath%>teacher/teacher_modify"><i class="iconfont icon-bianji"></i></a></td>
+					<!-- 进行中 -->
+					<c:if test="${test.get('test_signal') == 0 }">
+						<td></td>
+					</c:if>
+					<c:if test="${test.get('test_signal') == 1 }">
+						<td>√</td>
+					</c:if>
+					<c:if test="${test.get('test_signal') > 1 }">
+						<td>X</td>
+					</c:if>
+					<!-- 已结束 -->
+					<c:if test="${test.get('test_signal') < 2 }">
+						<td></td>
+					</c:if>
+					<c:if test="${test.get('test_signal') >= 2 }">
+						<td>√</td>
+					</c:if>
+					<!-- 已归档 -->
+					<c:if test="${test.get('test_signal') < 3 }">
+						<td></td>
+					</c:if>
+					<c:if test="${test.get('test_signal') >= 3 }">
+						<td>√</td>
+					</c:if>
+					<!-- 已清理 -->
+					<c:if test="${test.get('test_signal') < 4 }">
+						<td></td>
+					</c:if>
+					<c:if test="${test.get('test_signal') >= 4 }">
+						<td>√</td>
+					</c:if>
+					<!-- 编辑 -->
+					<td><a
+						href="<%=basePath%>teacher/teacher_modify?testid=${test.get('testid')}"><i
+							class="iconfont icon-bianji"></i></a></td>
 				</tr>
 			</c:forEach>
 		</table>

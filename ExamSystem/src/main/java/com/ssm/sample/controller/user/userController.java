@@ -40,11 +40,19 @@ public class userController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("login/login");
 
-		List<PageData> list = this.teacherFacade.selectNowTest();
-		ServletContext application = request.getSession().getServletContext();
-		// 先默认一个考试 id
-		application.setAttribute("testid", list.get(0).getString("testid"));
-		System.out.println( list.get(0).getString("testid"));
+		try {
+			List<PageData> list = this.teacherFacade.selectNowTest();
+			// 考试
+			if (list != null) {
+				ServletContext application = request.getSession().getServletContext();
+				application.setAttribute("testid", list.get(0).getString("testid"));
+				application.setAttribute("appTestName", list.get(0).getString("testname"));
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return mv;
 	}
 
