@@ -91,5 +91,16 @@ public class TeacherService extends BaseService {
 		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectNoSubmitStudent", pd);
 		return list;
 	}
+	
+	public List<PageData> selectAllStudent(PageData pd){
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectAllStudent", pd);
+		return list;
+	}
+
+	public List<PageData> selectNowTest() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectNowTest");
+		return list;
+	}
 
 }

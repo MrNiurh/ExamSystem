@@ -125,4 +125,16 @@ public class TeacherFacade extends BaseFacade {
 		List<PageData> list = this.teacherService.noSubmitStudent(pd);
 		return list;
 	}
+	
+	public List<PageData> selectAllStudent(PageData pd){
+		List<PageData> list = this.teacherService.selectAllStudent(pd);
+		return list;
+	}
+
+	public List<PageData> selectNowTest() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.selectNowTest();
+		return list;
+	}
+
 }

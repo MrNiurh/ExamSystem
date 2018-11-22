@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ssm.sample.controller.base.BaseController;
 import com.ssm.sample.facade.student.StudentFacade;
+import com.ssm.sample.facade.teacher.TeacherFacade;
 import com.ssm.sample.facade.user.UserFacade;
 import com.ssm.sample.util.MD5;
 import com.ssm.sample.util.PageData;
@@ -31,15 +32,19 @@ public class userController extends BaseController {
 	UserFacade userFacade;
 	@Autowired
 	StudentFacade studentFacade;
+	@Autowired
+	TeacherFacade teacherFacade;
 
 	@RequestMapping({ "/login" })
 	public ModelAndView home() throws IOException {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("login/login");
 
+		List<PageData> list = this.teacherFacade.selectNowTest();
 		ServletContext application = request.getSession().getServletContext();
 		// 先默认一个考试 id
-		application.setAttribute("testid", 1);
+		application.setAttribute("testid", list.get(0).getString("testid"));
+		System.out.println( list.get(0).getString("testid"));
 		return mv;
 	}
 

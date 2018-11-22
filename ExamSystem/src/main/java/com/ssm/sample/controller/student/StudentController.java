@@ -1,5 +1,7 @@
 package com.ssm.sample.controller.student;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,14 +34,18 @@ public class StudentController extends BaseController {
 	@RequestMapping("/updateStudentIp")
 	public Object updateStudentIp() {
 		PageData pd = this.getPageData();
+		
 		boolean b =false;
 		try {
+			ServletContext application = request.getSession().getServletContext();
+			pd.put("testid", application.getAttribute("testid"));
+			System.out.println(pd);
 			b=this.studentFacade.updateStudentIp(pd);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return b;
 		
 	}
 }

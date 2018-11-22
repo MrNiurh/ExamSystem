@@ -40,7 +40,7 @@
 	<select resultType="pd" parameterType="pd"
 		id="selectLoginStudent">
 		SELECT count(stuid)
-		from student where ip  is not null
+		from student where ip is not null and ip !=""
 		and
 		testid=#{testid}
 	</select>
@@ -49,7 +49,7 @@
 	<select resultType="pd" parameterType="pd"
 		id="selectNoLoginStudent">
 		SELECT count(stuid)
-		from student where ip is null
+		from student where ip is null and ip !=""
 		and
 		testid=#{testid}
 	</select>
@@ -59,31 +59,43 @@
 		id="selectSubmitStudent">
 		SELECT
 		count(stuid) from student where upload is not null
-		and testid=#{testid} and ip is not null
+		and
+		testid=#{testid} and ip is not null and ip !=""
 	</select>
 	<!-- 4查询未提交答案的个数(调用方法获取testresult是否为空) -->
 	<select resultType="pd" parameterType="pd"
 		id="selectNoSubmitStudent">
 		SELECT
 		count(stuid) from student where upload is null
-		and testid=#{testid} and ip is not null
+		and
+		testid=#{testid} and ip is not null and ip !=""
 	</select>
-	<!-- 查找学生(通过学号姓名班级) -->
+	<!-- 查找已登录学生(通过学号姓名班级) -->
 	<select resultType="pd" parameterType="pd"
 		id="selectinfoStudent">
 		SELECT
-		* from student where test_id=#{test_id}
-		<if test="s_stunum != null and s_stunum != ''">and stunum=#{s_stunum}</if>
-		<if test="s_stuname != null and s_stuname != ''">and stuname=#{s_stuname}</if>
-		<if test="s_stuclass != null and s_stuclass != ''">and stuclass=#{s_stuclass}</if>
+		* from student where testid=#{testid} and ip is not null and ip
+		!=""
+		<if test="stuid != null and stuid != ''">and stuid like "%"#{stuid}"%"</if>
+		<if test="stuname != null and stuname != ''">and stuname like "%"#{stuname}"%"</if>
+		<if test="stuclass != null and stuclass != ''">and stuclass like "%"#{stuclass}"%"</if>
+	</select>
+	<!-- 查找未登录学生(通过学号姓名班级) -->
+	<select resultType="pd" parameterType="pd" id="selectAllStudent">
+		SELECT
+		* from student where testid=#{testid}
+		<if test="stuid != null and stuid != ''">and stuid like "%"#{stuid}"%"</if>
+		<if test="stuname != null and stuname != ''">and stuname like "%"#{stuname}"%"</if>
+		<if test="stuclass != null and stuclass != ''">and stuclass like "%"#{stuclass}"%"</if>
 	</select>
 
-	<!-- 查找学生(通过ip) -->
+	<!-- 查找已登录学生(通过ip) -->
 	<select resultType="pd" parameterType="String"
 		id="selectStudentByIp">
 		SELECT
-		* from student where test_id=#{test_id}
-		<if test=" ip !=null and ip !=''">and ip=#{s_ip}</if>
+		* from student where testid=#{testid} and ip is not null and ip
+		!=""
+		<if test=" ip !=null and ip !=''">and ip like "%"#{ip}"%"</if>
 	</select>
 
 	<!-- 添加通知（需要考试id） -->
@@ -101,10 +113,8 @@
 	<!-- 添加学生(传入stunum，stuname，stuclass) -->
 	<insert parameterType="pd" id="insertStudent">
 		insert into student
-		(stunum,stuname,stuclass)
-		values(#{s_stunum},#{s_stuname},#{s_stuclass})
+		(stuid,stuname,stuclass,testid)
+		values(#{stuid},#{stuname},#{stuclass},#{testid})
 	</insert>
-
-
 
 </mapper>

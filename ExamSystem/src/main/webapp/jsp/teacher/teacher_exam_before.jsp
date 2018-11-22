@@ -78,7 +78,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td><a href="<%=basePath%>teacher/teacher_modify"><i class="iconfont icon-bianji"></i></a></td>
 				</tr>
 			</c:forEach>
 		</table>

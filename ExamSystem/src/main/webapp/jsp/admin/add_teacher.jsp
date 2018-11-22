@@ -50,7 +50,7 @@
 						<c:if test="${teacher.get('admin') eq '0'}">
 							<td>X</td>
 						</c:if>
-						<td><a href="">edit</a> <a href="">delete</a></td>
+						<td><a href="<%=basePath%>admin/edit_teacher"><span class="iconfont icon-bianji"></span></a> <a href=""><span class="iconfont icon-shanchu"></span></a></td>
 					</tr>
 				</c:forEach>
 			</table>
