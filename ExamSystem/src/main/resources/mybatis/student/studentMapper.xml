@@ -7,4 +7,26 @@
 		testid=#{testid} and stuid=#{stuid}
 	</update>
 
+	<!-- 根据 id 查询考试 -->
+	<select id="selectTestById" resultType="pd">
+		select * from test where
+		testid = #{testid}
+	</select>
+
+	<!-- 插入学生上传信息 -->
+	<insert id="insertUploadFile" parameterType="pd">
+		insert into
+		stuupfiles values (#{filesize},#{fileuptime},
+		#{filename},#{stuid},#{testid}
+		)
+	</insert>
+
+	<!-- 查询学生上传信息 -->
+	<select id="selectUploadFile" resultType="pd">
+		select * from
+		stuupfiles
+		where
+		testid = #{testid} and stuid=#{stuid}
+	</select>
+
 </mapper>

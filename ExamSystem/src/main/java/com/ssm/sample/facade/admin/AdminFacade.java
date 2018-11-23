@@ -14,10 +14,11 @@ public class AdminFacade extends BaseFacade {
 
 	@Autowired
 	AdminService adminService;
+
 	/*
 	 * 查询所有教师
 	 */
-	public List<PageData> getAllTeacher(PageData pd){
+	public List<PageData> getAllTeacher(PageData pd) {
 		return this.adminService.getAllTeacher(pd);
 	}
 
@@ -31,7 +32,7 @@ public class AdminFacade extends BaseFacade {
 	/*
 	 * 通过 id 删除教师
 	 */
-	public boolean deleteTeacherById(PageData pd) {
+	public boolean deleteTeacherById(String pd) {
 		return this.adminService.deleteTeacherById(pd);
 	}
 
@@ -41,8 +42,8 @@ public class AdminFacade extends BaseFacade {
 	public boolean updateTeacherById(PageData pd) {
 		return this.adminService.updateTeacherById(pd);
 	}
-	
-	public List<PageData> selectSystem(){
+
+	public List<PageData> selectSystem() {
 		return this.adminService.selectSystem();
 	}
 
@@ -58,5 +59,11 @@ public class AdminFacade extends BaseFacade {
 	 */
 	public boolean updateTeacherpwd(PageData pd) {
 		return this.adminService.updateTeacherpwd(pd);
+	}
+
+	public List<PageData> getTeacherById(String id) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.adminService.getTeacherById(id);
+		return list;
 	}
 }

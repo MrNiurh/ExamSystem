@@ -16,7 +16,7 @@ public class AdminService extends BaseService {
 		return result > 0;
 	}
 
-	public boolean deleteTeacherById(PageData pd) {
+	public boolean deleteTeacherById(String pd) {
 		// TODO Auto-generated method stub
 		int result = this.sqlSessionTemplate.delete("admin.adminMapper.deleteTeacherById", pd);
 		return result > 0;
@@ -24,7 +24,7 @@ public class AdminService extends BaseService {
 
 	public boolean updateTeacherById(PageData pd) {
 		// TODO Auto-generated method stub
-		int result = this.sqlSessionTemplate.update("admin.adminMapper", pd);
+		int result = this.sqlSessionTemplate.update("admin.adminMapper.updateTeacherById", pd);
 		return result > 0;
 	}
 
@@ -36,19 +36,25 @@ public class AdminService extends BaseService {
 
 	public boolean updateTeacherpwd(PageData pd) {
 		// TODO Auto-generated method stub
-		int result = this.sqlSessionTemplate.update("admin.adminMapper.updateTeacherpwd", pd);	
+		int result = this.sqlSessionTemplate.update("admin.adminMapper.updateTeacherpwd", pd);
 		return false;
 	}
 
 	public List<PageData> getAllTeacher(PageData pd) {
 		// TODO Auto-generated method stub
-		
+
 		return this.sqlSessionTemplate.selectList("admin.adminMapper.getAllTeacher", pd);
 	}
 
 	public List<PageData> selectSystem() {
 		// TODO Auto-generated method stub
 		return this.sqlSessionTemplate.selectList("admin.adminMapper.selectSystem");
+	}
+
+	public List<PageData> getTeacherById(String id) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("admin.adminMapper.getTeacherById", id);
+		return list;
 	}
 
 }

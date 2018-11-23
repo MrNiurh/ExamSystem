@@ -8,7 +8,10 @@ $(function() {
 			"test_signal" : 1
 		}
 		startTest(data);
-	})
+	});
+	$("#fileUpload").click(function() {
+		fileUpload();
+	});
 })
 
 function check() {
@@ -50,6 +53,27 @@ function startTest(data) {
 		async : true,
 		success : function(data) {
 			alert("考试已开启");
+			location.reload();
+		},
+		error : function(data) {
+			alert("操作失败");
+		}
+	});
+}
+
+function fileUpload() {
+	var URL = root + "/teacher/teacherUpload";
+	var data = new FormData($('#uploadForm')[0]);
+	$.ajax({
+		url : URL,
+		type : "post",
+		data : data,
+		async : false,
+		cache : false,
+		processData : false,
+		contentType : false,
+		success : function(data) {
+			alert("操作成功");
 			location.reload();
 		},
 		error : function(data) {

@@ -1,4 +1,29 @@
 $(function() {
+
+	$(".table").on("click", "#deleteTeacher", function() {
+		var data = {
+			"id" : $(this).next().val()
+		}
+		$.ajax({
+			url : root + "/admin/deleteTeacherById",
+			type : "post",
+			data : data,
+			dataType : 'json',
+			success : function(data) {
+				if (data == true) {
+					alert("操作成功");
+					location.reload();
+				}
+				if (data == false) {
+					alert("有相关考试存在，无法删除")
+				}
+
+			},
+			error : function(data) {
+				alert("操作失败");
+			}
+		})
+	})
 })
 
 function addTeacher() {
@@ -10,18 +35,19 @@ function addTeacher() {
 	}
 	if ($("#admin_signal").prop('checked')) {
 		$("#admin").val(1);
-	}else{
+	} else {
 		$("#admin").val(0);
 	}
 	var data = $(".addTeacher").serialize();
 	$.ajax({
 		url : root + "/admin/insertTeacher",
 		type : "post",
+		async : false,
 		data : data,
 		dataType : 'json',
 		success : function(data) {
 			if (data == true) {
-				alert("添加成功");
+				location.reload();
 			} else {
 				alert("用户名重复");
 			}

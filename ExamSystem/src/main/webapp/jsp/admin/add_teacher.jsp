@@ -28,8 +28,9 @@
 					id="t_password" name="t_password" placeholder="初始口令*"> <input
 					type="text" class="input" id="t_fullname" name="t_fullname"
 					placeholder="真实姓名*"> <input id="admin_signal" value="0"
-					type="checkbox">管理员 <input type="hidden" name="admin" value="0"/><input
-					class="btn btn-default sumbtn" type="submit" value="提交">
+					type="checkbox">管理员 <input type="hidden" name="admin"
+					value="0" /><input class="btn btn-default sumbtn" type="submit"
+					value="提交">
 			</form>
 		</div>
 		<div class="teacher_dis">
@@ -50,7 +51,12 @@
 						<c:if test="${teacher.get('admin') eq '0'}">
 							<td>X</td>
 						</c:if>
-						<td><a href="<%=basePath%>admin/edit_teacher"><span class="iconfont icon-bianji"></span></a> <a href=""><span class="iconfont icon-shanchu"></span></a></td>
+						<td><a
+							href="<%=basePath%>admin/edit_teacher?id=${teacher.get('id')}"><span
+								class="iconfont icon-bianji"></span></a> <a id="deleteTeacher"
+							onclick="deleteTeacher()"> <span
+								class="iconfont icon-shanchu"></span>
+						</a><input type="hidden" value="${teacher.get('id')}" /></td>
 					</tr>
 				</c:forEach>
 			</table>

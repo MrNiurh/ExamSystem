@@ -2,6 +2,7 @@ package com.ssm.sample.controller.admin;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +17,27 @@ import com.ssm.sample.util.PageData;
 @Controller
 @RequestMapping({ "/admin" })
 public class editTeacherController extends BaseController {
+
+	@Autowired
+	AdminFacade adminFacade;
+
 	/*
 	 * 管理员 >> 教师管理页面
 	 */
 	@RequestMapping(value = "/edit_teacher")
-	public ModelAndView home() {
+	public ModelAndView home(@Param("id") String id) {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("admin/edit_teacher");
+
+		try {
+			List<PageData> list = this.adminFacade.getTeacherById(id);
+			mv.addObject("editTeacher", list.get(0));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return mv;
 	}
-
-	@Autowired
-	AdminFacade adminFacade;
 
 	/*
 	 * 添加教师
@@ -36,7 +46,6 @@ public class editTeacherController extends BaseController {
 	@RequestMapping("/insertTeacher")
 	public Object insertTeacher() {
 		PageData pd = this.getPageData();
-		System.out.println(pd);
 		pd.put("t_password", MD5.md5(pd.getString("t_password")));
 		boolean b = false;
 		try {
@@ -51,11 +60,10 @@ public class editTeacherController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/deleteTeacherById")
-	public Object deleteTeacherById() {
-		PageData pd = this.getPageData();
+	public Object deleteTeacherById(@Param("id") String id) {
 		boolean b = false;
 		try {
-			b = this.adminFacade.deleteTeacherById(pd);
+			b = this.adminFacade.deleteTeacherById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -69,6 +77,14 @@ public class editTeacherController extends BaseController {
 	@RequestMapping("/updateTeacherById")
 	public Object updateTeacherById() {
 		PageData pd = this.getPageData();
+		if (pd.getString("password") == null || pd.getString("password").equals("")) {
+			List<PageData> list = this.adminFacade.getTeacherById(pd.getString("id"));
+			pd.put("password", list.get(0).getString("password"));
+		} else {
+			String str = pd.getString("password");
+			pd.put("password", MD5.md5(str));
+		}
+
 		boolean b = false;
 		try {
 			b = this.adminFacade.updateTeacherById(pd);

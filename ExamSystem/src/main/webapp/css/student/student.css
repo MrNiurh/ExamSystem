@@ -1,6 +1,6 @@
 .body{
     width:100%;
-    height: auto;
+   height:auto;
 }
 .head{
     height: 45px;
@@ -9,7 +9,7 @@
 }
 .container{
     width: 80%;
-    height: 400px;
+    height: auto;
     /* background: gray; */
     margin: 0 auto;
 }
@@ -96,7 +96,7 @@ border: 0.1px solid black;
 }
 .filelist{
     width: 98%;
-    height: auto;
+    
     margin: 10px auto 0;
 }
 .result2{

@@ -1,5 +1,7 @@
 package com.ssm.sample.facade.student;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,24 @@ public class StudentFacade extends BaseFacade {
 
 		return this.studentService.updateStudentIp(pd);
 
+	}
+
+	public List<PageData> selectTestById(String testid) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.studentService.selectTestById(testid);
+		return list;
+	}
+
+	public boolean insertUploadFile(PageData pd) {
+		// TODO Auto-generated method stub
+		
+		return this.studentService.insertUploadFile(pd);
+	}
+
+	public List<PageData> selectUploadFile(PageData pd) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.studentService.selectUploadFile(pd);
+		return list;
 	}
 
 }

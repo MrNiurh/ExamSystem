@@ -49,8 +49,9 @@
 	</update>
 
 	<!-- 更新添加考试试卷（需要传入考试id） -->
-	<update parameterType="pd" id="updateaddfile"> update teacher SET testfile=
-		#{test_file }, where testid=#{testid}
+	<update parameterType="pd" id="updateaddfile"> update test SET submit=
+		#{submit}
+		where testid=#{testid}
 	</update>
 
 	<!-- 1查询参加考试人数 -->

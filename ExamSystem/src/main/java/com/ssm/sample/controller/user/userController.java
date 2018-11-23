@@ -46,7 +46,7 @@ public class userController extends BaseController {
 			if (list != null) {
 				ServletContext application = request.getSession().getServletContext();
 				application.setAttribute("testid", list.get(0).getString("testid"));
-				application.setAttribute("appTestName", list.get(0).getString("testname"));
+				application.setAttribute("RunTest", list);
 			}
 
 		} catch (Exception e) {
@@ -73,6 +73,7 @@ public class userController extends BaseController {
 				map.put("check", "true");
 				session.setAttribute("fullname", student.get(0).getString("stuname"));
 				session.setAttribute("identity", "student");
+				session.setAttribute("stuid", student.get(0).get("stuid"));
 			} else {
 
 				map.put("check", "false");
@@ -85,8 +86,8 @@ public class userController extends BaseController {
 				ServletContext application = request.getSession().getServletContext();
 				String ip = InetAddress.getLocalHost().getHostAddress().toString();
 				pd.put("stuid", student.get(0).getString("stuid"));
-				System.out.println(student.get(0).getString("stuid"));
 				pd.put("testid", application.getAttribute("testid"));
+				pd.put("ip", ip);
 				this.studentFacade.updateStudentIp(pd);
 			} catch (UnknownHostException e1) {
 				// TODO Auto-generated catch block

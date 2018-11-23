@@ -39,17 +39,20 @@
 		<span class="newtext">自动开始</span><br> <input type="button"
 			id="update" class="layui-btn layui-btn-sm " value="修改">
 	</form>
-	<form class="modifyall">
+	<form action="" enctype="multipart/form-data" class="modifyall"
+		method="post" id="uploadForm">
 		<span class="newh3">上传试卷</span><br> <input type="file"
-			name="paper" style="display: inline-block" class="po"> <input
-			type="submit" class="layui-btn layui-btn-sm " value="上传">
+			name="file" id="file" style="display: inline-block" class="po">
+		<input type="hidden" name="testid" value="${editTest.get('testid')}" />
+		<input type="submit" class="layui-btn layui-btn-sm " value="上传"
+			id="fileUpload">
 
 	</form>
 	<form class="modifyall">
 		<span class="newh3">导入学生名单</span><br> <span class="newtext">目前设定参加此次考试的学生人数：</span><br>
 		<input type="submit" class="layui-btn layui-btn-sm  po" value="继续导入">
 	</form>
-	<c:if test="${testid ==null }">
+	<c:if test="${testid ==null}">
 		<div class="modifyall">
 			<button class="btn btn-primary" name="${editTest.get('testid')}"
 				style="margin-top: 30px" id="startTest">
@@ -61,7 +64,7 @@
 	<c:if test="${testid != null }">
 		<div class="modifyall">
 			<p class="newtext" style="margin-top: 30px">
-				考试 <span style="font-weight: bold; font-size: 1.3em">${appTestName}</span>
+				考试 <span style="font-weight: bold; font-size: 1.3em">${RunTest.get(0).get('testname')}</span>
 				正在进行中，本系统不允许同时进行多场考试。
 			</p>
 		</div>
