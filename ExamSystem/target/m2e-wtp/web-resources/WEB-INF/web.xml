@@ -93,7 +93,15 @@
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/student/*</url-pattern>
 	</filter-mapping>
-
+	<!-- host过滤  -->
+	<filter>
+		<filter-name>StudentipFilter</filter-name>
+		<filter-class>com.ssm.sample.filter.StudentipFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>StudentipFilter</filter-name>
+		<url-pattern>/main/login</url-pattern>
+	</filter-mapping>
 	<!-- Shiro -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>
