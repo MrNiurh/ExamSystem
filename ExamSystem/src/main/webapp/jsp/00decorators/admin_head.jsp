@@ -77,8 +77,8 @@ var abroot = "<%=basePath%>";
 				<div id="toprig">
 					<ul class="layui-nav">
 						<li class="layui-nav-item"><a href="">欢迎，${sessionScope.fullname}</a></li>
-						<li class="layui-nav-item"><a href=""><span class="iconfont icon-bianji1" style="color:white"></span> 修改口令 </a></li>
-						<li class="layui-nav-item"><a href=""><span class="iconfont icon-tuichu1" style="color:white"></span>退出</a></li>
+						<li class="layui-nav-item"><a href="javascript:void(0)" id="xiugai"><span class="iconfont icon-bianji1" style="color:white"></span> 修改口令 </a></li>
+						<li class="layui-nav-item"><a href="javascript:void(0)" id="tuichu" ><span class="iconfont icon-tuichu1" style="color:white"></span>退出</a></li>
 					</ul>
 				</div>
 			</div>
@@ -87,6 +87,29 @@ var abroot = "<%=basePath%>";
 	<div style="clear: both; min-width: 1320px; overflow-x: auto;">
 		<sitemesh:body />
 	</div>
+<script>
 
+        layui.use('layer', function () {
+            var layer = layui.layer;
+        });
+        $("#tuichu").click(function () {
+            layer.open({
+                type: 2,
+                title: '退出',
+                shadeClose: true, //点击遮罩关闭层
+                area: ['300px', '200px'],
+                content:abroot+ 'jsp/00decorators/tuichu.html'
+            })
+        })
+        $("#xiugai").click(function () {
+            layer.open({
+                type: 2,
+                title: '修改口令',
+                shadeClose: true, //点击遮罩关闭层
+                area: ['500px', '350px'],
+                content: abroot+ 'jsp/00decorators/alert.html'
+            })
+        })
+    </script>
 </body>
 </html>
