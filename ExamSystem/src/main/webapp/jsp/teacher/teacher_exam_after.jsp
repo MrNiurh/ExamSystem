@@ -27,11 +27,11 @@
 				<col width="9%">
 				<col width="10%">
 				<col width="9%">
-				<col width="8%">
-				<col width="8%">
-				<col width="8%">
-				<col width="8%">
-				<col width="10%">
+				<col width="6%">
+				<col width="6%">
+				<col width="6%">
+				<col width="6%">
+				<col width="18%">
 			</colgroup>
 			<tr class="tablectrl">
 				<td>考试名称</td>
@@ -51,7 +51,9 @@
 					<td>${test.get('starttime')}</td>
 					<td>${test.get('teacherName')}</td>
 					<!-- 上传试卷 -->
-					<td></td>
+					<td><c:if test="${test.get('submit') != null }">
+						试卷已上传
+					</c:if></td>
 					<!-- 自动开始 -->
 					<c:if test="${test.get('auto_begin') == 0 }">
 						<td>X</td>
@@ -92,10 +94,33 @@
 					</c:if>
 					<!-- 编辑 -->
 					<td><c:if test="${test.get('test_signal')==1}">
-							<button class="btn btn-primary" name="${test.get('testid')}" id="endTest">
+							<button class="btn btn-primary" name="${test.get('testid')}"
+								id="endTest">
 								<i style="color: black" class="iconfont icon-tuichu"></i>结束考试
 							</button>
-						</c:if></td>
+						</c:if> <c:if
+							test="${test.get('test_signal')==2 || test.get('test_signal')==3}">
+							<a class="test_after_op btn btn-default" id="downloadInfo"
+								onclick="fresh()" href="downZip?testid=${test.get('testid')}"
+								title="打包下载"><img src="<%=path%>/assets/imgs/download.png"
+								class="test_afterlogos" alt=""></a>
+							<a class="test_after_op  btn btn-default" id="exportrecords_info"
+								href="excelExport?testid=${test.get('testid')}" title="导出提交记录"><img
+								src="<%=path%>/assets/imgs/export_record.png"
+								class="test_afterlogos" alt=""></a>
+						</c:if> <c:if test="${test.get('test_signal')==3}">
+							<button class="test_after_op  btn btn-default " id="testClean"
+								name="${test.get('testid')}">
+								<img src="<%=path%>/assets/imgs/clean_tests.png"
+									class="test_afterlogos" alt="">清理
+							</button>
+						</c:if> <c:if test="${test.get('test_signal')==4}">
+							<button class="test_del   btn btn-danger" id="testDel"
+								name="${test.get('testid')}">
+								<img src="<%=path%>/assets/imgs/clean_tests.png"
+									class="test_afterlogos" alt="">删除
+							</button>
+						</c:if> <input type="hidden" name="testid" value="${test.get('testid')}" /></td>
 				</tr>
 			</c:forEach>
 		</table>

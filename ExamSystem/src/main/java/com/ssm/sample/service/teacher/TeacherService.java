@@ -56,11 +56,7 @@ public class TeacherService extends BaseService {
 		return result > 0;
 	}
 
-	public boolean deleteTestmsg(PageData pd) {
-		// TODO Auto-generated method stub
-		int result = this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteTestmsg", pd);
-		return result > 0;
-	}
+
 
 	public boolean insertStudent(PageData pd) {
 		// TODO Auto-generated method stub
@@ -124,6 +120,32 @@ public class TeacherService extends BaseService {
 	public boolean updateSignal(PageData pd) {
 		// TODO Auto-generated method stub
 		return this.sqlSessionTemplate.update("teacher.teacherMapper.updateSignal", pd) > 0;
+	}
+
+	public List<PageData> selectUploadById(String testid) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectUploadById", testid);
+		return list;
+	}
+
+	public boolean deleteStuentsAfter(String testid) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteStuentsAfter", testid) > 0;
+	}
+
+	public boolean deleteTestAfter(String testid) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteTestAfter", testid) > 0;
+	}
+
+	public boolean deleteUploadAfter(String testid) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteUploadAfter", testid) > 0;
+	}
+
+	public boolean deleteInfosAfter() {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteInfosAfter") > 0;
 	}
 
 }

@@ -124,15 +124,15 @@
 
 	<!-- 添加通知（需要考试id） -->
 	<insert parameterType="pd" id="insertTestmsg">
-		insert into testmsg (msg,testid)
-		values(#{msg },#{testid})
+		insert into teainfos
+		value
+		(#{info})
 	</insert>
 
-	<!-- 删除通知(传入通知id) -->
-	<delete parameterType="String" id="deleteTestmsg">
-		DELETE FROM testmsg WHERE
-		testmsg_id=#{ testmsg_id }
-	</delete>
+	<!-- 查询通知 -->
+	<select id="selectInfos" resultType="pd">
+		select * from teainfos
+	</select>
 
 	<!-- 添加学生(传入stunum，stuname，stuclass) -->
 	<insert parameterType="pd" id="insertStudent">
@@ -140,5 +140,27 @@
 		(stuid,stuname,stuclass,testid)
 		values(#{stuid},#{stuname},#{stuclass},#{testid})
 	</insert>
+
+	<!-- 提交信息 -->
+	<select id="selectUploadById" resultType="pd" parameterType="pd">
+		select * from stuupfiles where testid= #{testid}
+	</select>
+
+	<!-- 删除学生信息 -->
+	<delete id="deleteStuentsAfter">
+		delete from student where testid = #{testid}
+	</delete>
+	<!-- 删除文件信息 -->
+	<delete id="deleteUploadAfter">
+		delete from stuupfiles where testid = #{testid}
+	</delete>
+	<!-- 删除通知信息 -->
+	<delete id="deleteInfosAfter">
+		delete from teainfos where 1 = 1
+	</delete>
+	<!-- 删除考试信息 -->
+	<delete id="deleteTestAfter">
+		delete from test where testid = #{testid}
+	</delete>
 
 </mapper>

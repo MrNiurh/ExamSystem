@@ -4,12 +4,25 @@ $(function() {
 			"testid" : $(this).attr("name"),
 			"test_signal" : 2
 		}
-		endTest(data);
-
+		updateSignal(data);
+	});
+	$("#testClean").click(function() {
+		var data = {
+			"testid" : $(this).attr("name"),
+			"test_signal" : 4
+		}
+		updateSignal(data);
+	});
+	$("#testDel").click(function() {
+		var data = {
+			"testid" : $(this).attr("name"),
+			"test_signal" : 5
+		}
+		updateSignal(data);
 	})
 })
 
-function endTest(data) {
+function updateSignal(data) {
 	var URL = root + "/teacher/updateSignal"
 	$.ajax({
 		url : URL,

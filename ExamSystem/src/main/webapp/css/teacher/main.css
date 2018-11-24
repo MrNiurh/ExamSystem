@@ -204,3 +204,18 @@ a:hover{
     height: 30px;
     border-color: 1px solid #999999;
 }
+.test_after_op{
+    float:left;
+   padding: 5px 13px;
+   text-decoration: none;
+   margin-right: 5px;
+}
+.test_afterlogos{
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    margin-left: 2px;
+}
+.hide{
+    display: none;
+}

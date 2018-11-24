@@ -10,8 +10,12 @@
 <title>考试编辑</title>
 <script type="text/javascript"
 	src="<%=path%>/js/teacher/teacher_exam_modify.js"></script>
+<c:if test="${editTest.get('test_signal') > 0}">
+	<script type="text/javascript">
+		history.go(-1);
+	</script>
+</c:if>
 </head>
-
 <div class="layui-main">
 	<div class="bighat">
 		<div class="tecicon">
@@ -20,6 +24,11 @@
 		</div>
 		<h2>上机考试管理</h2>
 	</div>
+	<c:if test="${editTest.get('test_signal') > 0}">
+		<script type="text/javascript">
+			history.go(-1);
+		</script>
+	</c:if>
 	<form class="modifyall" id="updateForm" style="margin-top: 20px;">
 		<span class="newh3">编辑考试信息</span><br> <span class="newtext">考试名称：</span>
 		<input type="text" name="testname" id="testname"
@@ -46,11 +55,19 @@
 		<input type="hidden" name="testid" value="${editTest.get('testid')}" />
 		<input type="submit" class="layui-btn layui-btn-sm " value="上传"
 			id="fileUpload">
+		<c:if
+			test="${editTest.get('submit') != null || editTest.get('submit') != ''}">
+			<br>
+			<span style="color: green">已上传文件</span>
+		</c:if>
 
 	</form>
-	<form class="modifyall">
-		<span class="newh3">导入学生名单</span><br> <span class="newtext">目前设定参加此次考试的学生人数：</span><br>
-		<input type="submit" class="layui-btn layui-btn-sm  po" value="继续导入">
+	<form class="modifyall" id="excelForm">
+		<span class="newh3">导入学生名单</span><br> <span class="newtext">目前设定参加此次考试的学生人数：${allStudent }</span><br>
+		<input type="file" name="file" id="file" style="display: inline-block"
+			class="po"> <input type="hidden" name="testid"
+			value="${editTest.get('testid')}"> <input id="excelButton"
+			type="button" class="layui-btn layui-btn-sm  po" value="继续导入">
 	</form>
 	<c:if test="${testid ==null}">
 		<div class="modifyall">

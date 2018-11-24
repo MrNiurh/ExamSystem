@@ -66,4 +66,31 @@ public class AdminFacade extends BaseFacade {
 		List<PageData> list = this.adminService.getTeacherById(id);
 		return list;
 	}
+	
+	/*
+	 * 删除学生信息
+	 */
+	public boolean deleteStuentsAfter(String testid) {
+		return this.adminService.deleteStuentsAfter(testid);
+	}
+	/*
+	 * 删除文件信息
+	 */
+	public boolean deleteUploadAfter(String testid) {
+		return this.adminService.deleteUploadAfter(testid);
+	}
+	/*
+	 * 删除通知信息
+	 */
+	public boolean deleteInfosAfter() {
+		return this.adminService.deleteInfosAfter();
+	}
+	/*
+	 * 删除考试信息
+	 */
+	public boolean deleteTestAfter(String testid) {
+		return this.adminService.deleteTestAfter(testid);
+	}
+	
+	
 }

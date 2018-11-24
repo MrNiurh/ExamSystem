@@ -70,16 +70,19 @@ public class StudentController extends BaseController {
 		List<PageData> list = (List<PageData>) application.getAttribute("RunTest");
 		System.out.println(list);
 		if (list != null) {
-			String path = request.getServletContext().getRealPath("/ExamSystem/" + list.get(0).getString("testname"));
+			String path = request.getServletContext().getRealPath("/") + "ExamSystem/"
+					+ list.get(0).getString("testname") + "/";
 			System.out.println(path);
-			System.out.println(path);
-			File file = new File(path);
-			File[] files = file.listFiles();
-			if (files != null) {
-				String name = files[0].getName();// 随机获取一个文件，实际中按需编写代码
-				System.out.println("文件的名字：" + name);
-				response.addHeader("content-disposition", "attachment;filename=" + name);
-				FileUtils.copyFile(files[0], response.getOutputStream());
+			String fileName = list.get(0).getString("submit");
+			System.out.println(path + fileName);
+			File file = new File(path + fileName);
+			// File file = new
+			// File("E:\\EclipseWorkspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\Exam_SSM\\测试5\\test.xlsx");
+			System.out.println(file);
+			if (file != null) {
+				System.out.println("文件的名字：" + fileName);
+				response.addHeader("content-disposition", "attachment;filename=" + fileName);
+				FileUtils.copyFile(file, response.getOutputStream());
 			}
 
 		}

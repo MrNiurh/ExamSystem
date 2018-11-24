@@ -55,5 +55,22 @@
 		#{t_password}, where tnum=#{teacher_id}
 	</update>
 
+	<!-- 删除学生信息 -->
+	<delete id="deleteStuentsAfter">
+		delete * from student where testid = #{testid}
+	</delete>
+	<!-- 删除文件信息 -->
+	<delete id="deleteUploadAfter">
+		delete * from stuupfiles where testid = #{testid}
+	</delete>
+	<!-- 删除通知信息 -->
+	<delete id="deleteInfosAfter">
+		delete * from teainfos where testid = #{testid}
+	</delete>
+	<!-- 删除考试信息 -->
+	<delete id="deleteTestAfter">
+		delete * test student where testid = #{testid}
+	</delete>
+
 
 </mapper>

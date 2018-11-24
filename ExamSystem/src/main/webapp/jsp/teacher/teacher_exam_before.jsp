@@ -107,9 +107,14 @@
 						<td>√</td>
 					</c:if>
 					<!-- 编辑 -->
-					<td><a
+					<td>
+					<c:if test="${test.get('test_signal') < 1 }">
+						<a
 						href="<%=basePath%>teacher/teacher_modify?testid=${test.get('testid')}"><i
-							class="iconfont icon-bianji"></i></a></td>
+							class="iconfont icon-bianji"></i></a>
+					
+					</c:if>
+							</td>
 				</tr>
 			</c:forEach>
 		</table>

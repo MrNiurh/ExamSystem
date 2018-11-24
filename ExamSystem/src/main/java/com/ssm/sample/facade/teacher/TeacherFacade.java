@@ -1,13 +1,22 @@
 package com.ssm.sample.facade.teacher;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ssm.sample.facade.base.BaseFacade;
 import com.ssm.sample.service.teacher.TeacherService;
+import com.ssm.sample.util.GetCellValues;
 import com.ssm.sample.util.PageData;
 
 @Service("TeacherFacade")
@@ -77,13 +86,6 @@ public class TeacherFacade extends BaseFacade {
 	}
 
 	/*
-	 * 删除通知
-	 */
-	public boolean deleteTestmsg(PageData pd) {
-		return this.teacherService.deleteTestmsg(pd);
-	}
-
-	/*
 	 * 添加学生
 	 */
 	public boolean insertStudent(PageData pd) {
@@ -142,6 +144,7 @@ public class TeacherFacade extends BaseFacade {
 		List<PageData> list = this.teacherService.selectTestById(testid);
 		return list;
 	}
+
 	/*
 	 * 更新考试信息
 	 */
@@ -165,6 +168,128 @@ public class TeacherFacade extends BaseFacade {
 	public boolean updateSignal(PageData pd) {
 		// TODO Auto-generated method stub
 		return this.teacherService.updateSignal(pd);
+	}
+
+	/*
+	 * excel 导入名单
+	 */
+	public Object readExcel(MultipartFile file, PageData pd) throws IOException {
+		// TODO Auto-generated method stub
+		String fileName = file.getOriginalFilename();
+		Workbook workbook = null;
+		String check = "";
+		InputStream in = file.getInputStream();
+		System.out.println(fileName);
+		if (fileName.endsWith("xls")) {
+			workbook = new HSSFWorkbook(in);
+		} else if (fileName.endsWith("xlsx")) {
+			workbook = new XSSFWorkbook(in);
+		}
+		String[] title = { "学号", "姓名", "班级" };
+		if (workbook != null) {
+			Sheet sheet = workbook.getSheetAt(0);
+			// 获得当前sheet的开始行
+			int firstRowNum = sheet.getFirstRowNum();
+			// 获得当前sheet的结束行
+			int lastRowNum = sheet.getLastRowNum();
+			Row row = null;
+			int firstCellNum = 0;
+			int lastCellNum = 0;
+			Cell cell = null;
+			String value = "";
+			row = sheet.getRow(firstRowNum);
+			// 获得当前行的开始列
+			firstCellNum = row.getFirstCellNum();
+			// 获得当前行的列数
+			lastCellNum = row.getPhysicalNumberOfCells();
+
+			// 循环当前行
+			for (int cellNum = firstCellNum; cellNum < lastCellNum + firstCellNum; cellNum++) {
+				cell = row.getCell(cellNum);
+				value = (String) GetCellValues.getCellValue(cell);
+				if (title[cellNum].equals(value)) {
+					check = "true";
+				} else {
+					check = "false";
+					break;
+				}
+			}
+			System.out.println(check);
+			if (check.equals("true")) {
+				// 循环除了第一行的所有行
+				for (int rowNum = firstRowNum + 1; rowNum <= lastRowNum; rowNum++) {
+					// 获得当前行
+					row = sheet.getRow(rowNum);
+					if (row == null) {
+						continue;
+					}
+					// 获得当前行的开始列
+					firstCellNum = row.getFirstCellNum();
+					// 获得当前行的列数
+					lastCellNum = row.getPhysicalNumberOfCells();
+					// 循环当前行
+					for (int cellNum = firstCellNum; cellNum < lastCellNum + firstCellNum; cellNum++) {
+						cell = row.getCell(cellNum);
+						value = (String) GetCellValues.getCellValue(cell);
+						if (pd != null) {
+							switch (cellNum) {
+							case 0:
+								pd.put("stuid", value);
+								break;
+							case 1:
+								pd.put("stuname", value);
+								break;
+							case 2:
+								pd.put("stuclass", value);
+								break;
+							default:
+								break;
+							}
+						}
+
+					}
+					boolean b = this.teacherService.insertStudent(pd);
+				}
+			}
+
+		}
+		return check;
+
+		// TODO: handle exception
+	}
+
+	public List<PageData> selectUploadById(String testid) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.selectUploadById(testid);
+		return list;
+	}
+
+	/*
+	 * 删除学生信息
+	 */
+	public boolean deleteStuentsAfter(String testid) {
+		return this.teacherService.deleteStuentsAfter(testid);
+	}
+
+	/*
+	 * 删除文件信息
+	 */
+	public boolean deleteUploadAfter(String testid) {
+		return this.teacherService.deleteUploadAfter(testid);
+	}
+
+	/*
+	 * 删除通知信息
+	 */
+	public boolean deleteInfosAfter() {
+		return this.teacherService.deleteInfosAfter();
+	}
+
+	/*
+	 * 删除考试信息
+	 */
+	public boolean deleteTestAfter(String testid) {
+		return this.teacherService.deleteTestAfter(testid);
 	}
 
 }

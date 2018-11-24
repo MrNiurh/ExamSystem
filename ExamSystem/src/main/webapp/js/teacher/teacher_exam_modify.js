@@ -12,6 +12,9 @@ $(function() {
 	$("#fileUpload").click(function() {
 		fileUpload();
 	});
+	$("#excelButton").click(function() {
+		excelUpload();
+	})
 })
 
 function check() {
@@ -75,6 +78,35 @@ function fileUpload() {
 		success : function(data) {
 			alert("操作成功");
 			location.reload();
+		},
+		error : function(data) {
+			alert("操作失败");
+		}
+	});
+}
+/*
+ * 导入名单
+ */
+function excelUpload() {
+	var data = new FormData($("#excelForm")[0]);
+	var URL = root + "/teacher/excelUpload";
+	$.ajax({
+		url : URL,
+		type : "post",
+		data : data,
+		async : false,
+		cache : false,
+		processData : false,
+		contentType : false,
+		success : function(data) {
+			if (data == "true") {
+				alert("操作成功");
+				location.reload();
+			}
+			if (data == "false") {
+				alert("请检查文件格式");
+			}
+			
 		},
 		error : function(data) {
 			alert("操作失败");

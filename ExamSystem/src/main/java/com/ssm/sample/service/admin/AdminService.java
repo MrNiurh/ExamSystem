@@ -56,5 +56,25 @@ public class AdminService extends BaseService {
 		List<PageData> list = this.sqlSessionTemplate.selectList("admin.adminMapper.getTeacherById", id);
 		return list;
 	}
+	
+	public boolean deleteStuentsAfter(String testid) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("admin.adminMapper.deleteStuentsAfter", testid) > 0;
+	}
+
+	public boolean deleteTestAfter(String testid) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("admin.adminMapper.deleteTestAfter", testid) > 0;
+	}
+
+	public boolean deleteUploadAfter(String testid) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("admin.adminMapper.deleteUploadAfter", testid) > 0;
+	}
+
+	public boolean deleteInfosAfter() {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("admin.adminMapper.deleteInfosAfter") > 0;
+	}
 
 }
