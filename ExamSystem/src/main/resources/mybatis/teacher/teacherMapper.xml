@@ -109,13 +109,14 @@
 		<if test="stuname != null and stuname != ''">and stuname like "%"#{stuname}"%"</if>
 		<if test="stuclass != null and stuclass != ''">and stuclass like "%"#{stuclass}"%"</if>
 	</select>
-	<!-- 查找未登录学生(通过学号姓名班级) -->
+	<!-- 查找所有学生(通过学号姓名班级) -->
 	<select resultType="pd" parameterType="pd" id="selectAllStudent">
 		SELECT
 		* from student where testid=#{testid}
 		<if test="stuid != null and stuid != ''">and stuid like "%"#{stuid}"%"</if>
 		<if test="stuname != null and stuname != ''">and stuname like "%"#{stuname}"%"</if>
 		<if test="stuclass != null and stuclass != ''">and stuclass like "%"#{stuclass}"%"</if>
+		ORDER BY stuid
 	</select>
 
 	<!-- 查找已登录学生(通过ip) -->
@@ -127,8 +128,15 @@
 		<if test=" ip !=null and ip !=''">and ip like "%"#{ip}"%"</if>
 	</select>
 
+	<select resultType="pd" parameterType="pd"
+		id="controllStudentByIp">
+		SELECT
+		* from student where testid=#{testid}
+		and ip =#{ip}
+	</select>
+
 	<!-- 添加通知（需要考试id） -->
-	<insert parameterType="pd" id="insertTestmsg">
+	<insert parameterType="pd" id="insertNotify">
 		insert into teainfos
 		value
 		(#{info})
@@ -138,6 +146,11 @@
 	<select id="selectInfos" resultType="pd">
 		select * from teainfos
 	</select>
+	<!-- 删除1通知 -->
+	<delete id="deleteOneInfo" parameterType="pd">
+		delete from teainfos
+		where info = #{info}
+	</delete>
 
 	<!-- 添加学生(传入stunum，stuname，stuclass) -->
 	<insert parameterType="pd" id="insertStudent">
@@ -174,5 +187,17 @@
 		where id =
 		#{id}
 	</update>
+	<!-- 删除1学生信息 -->
+	<delete id="deleteOnrStuent">
+		delete from student where testid = #{testid} and
+		stuid=#{stuid} and stuname=#{stuname} and stuclass=#{stuclass}
+	</delete>
+	
+	<!--  system-->
+	
+	<select id="selectSystem" resultType="pd">
+		select * from system 
+	</select>
+
 
 </mapper>

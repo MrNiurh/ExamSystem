@@ -59,17 +59,45 @@
 <script type="text/javascript">
 var root = "<%=path%>/";
 if (root == "/") {root="";}
-var abroot = "<%=basePath%>	";
+var abroot = "<%=basePath%>";
 </script>
-<body>
+<script type="text/javascript">
+	$(function() {
+		setInterval("get()", 10000);
+	})
+	function get() {
+		var URL = root + "/student/selectAllInfos";
+		$.ajax({
+			url : URL,
+			type : "post",
+			dataType : 'json',
+			async : false,
+			success : function(data) {
+				$("#aa").empty();
+				var str=""
+				for(var i=0;i<data.length;i++){
+					 str += "<h3>"+data[i].info+"</h3>"
+				}
+				$("#aa").append(str);
+				
+			},
+			error : function(data) {
+			}
+		});
+	}
+</script>
+<body style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
 	<div style="min-width: 1100px;">
 		<div id="topcontain">
 			<div class="layui-main">
 				<a href="" id="mainlogo">上机考试管理系统</a>
 				<div id="topsec">
 					<ul class="layui-nav">
-						<li class="layui-nav-item"><a href="<%=basePath%>student/"><span class="iconfont icon-zhuye" style="color:white">首页</a></li>
-						<li class="layui-nav-item"><a href="<%=basePath%>student/student_check"><span class="iconfont icon-yanjing" style="color:white">查看提交</a></li>
+						<li class="layui-nav-item"><a href="<%=basePath%>student/"><span
+								class="iconfont icon-zhuye" style="color: white">首页</span></a></li>
+						<li class="layui-nav-item"><a
+							href="<%=basePath%>student/student_check"><span
+								class="iconfont icon-yanjing" style="color: white">查看提交</span></a></li>
 					</ul>
 				</div>
 				<div id="toprig">
@@ -83,6 +111,11 @@ var abroot = "<%=basePath%>	";
 	<div style="clear: both; min-width: 1320px; overflow-x: auto;">
 		<sitemesh:body />
 	</div>
-
+	<div id="aa"
+		style="position: absolute; left: 10%; bottom: 100px; color: red">
+		<c:forEach items="${infos}" var="info">
+			<h3>${info.get('info') }</h3>
+		</c:forEach>
+	</div>
 </body>
 </html>

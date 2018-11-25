@@ -109,17 +109,21 @@
 								src="<%=path%>/assets/imgs/export_record.png"
 								class="test_afterlogos" alt=""></a>
 						</c:if> <c:if test="${test.get('test_signal')==3}">
-							<button class="test_after_op  btn btn-default " id="testClean"
-								name="${test.get('testid')}">
-								<img src="<%=path%>/assets/imgs/clean_tests.png"
-									class="test_afterlogos" alt="">清理
-							</button>
+							<c:if test="${ifadmin != 0 || clear !=0}">
+								<button class="test_after_op  btn btn-default " id="testClean"
+									name="${test.get('testid')}">
+									<img src="<%=path%>/assets/imgs/clean_tests.png"
+										class="test_afterlogos" alt="">清理
+								</button>
+							</c:if>
 						</c:if> <c:if test="${test.get('test_signal')==4}">
-							<button class="test_del   btn btn-danger" id="testDel"
-								name="${test.get('testid')}">
-								<img src="<%=path%>/assets/imgs/clean_tests.png"
-									class="test_afterlogos" alt="">删除
-							</button>
+							<c:if test="${ifadmin != 0 || clear !=0}">
+								<button class="test_del   btn btn-danger" id="testDel"
+									name="${test.get('testid')}">
+									<img src="<%=path%>/assets/imgs/clean_tests.png"
+										class="test_afterlogos" alt="">删除
+								</button>
+							</c:if>
 						</c:if> <input type="hidden" name="testid" value="${test.get('testid')}" /></td>
 				</tr>
 			</c:forEach>

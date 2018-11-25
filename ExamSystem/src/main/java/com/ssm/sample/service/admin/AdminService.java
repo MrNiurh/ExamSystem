@@ -104,4 +104,10 @@ public class AdminService extends BaseService {
 		return this.sqlSessionTemplate.update("admin.adminMapper.updatePassword", pd) > 0;
 	}
 
+	public List<PageData> selectAdminCount() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("admin.adminMapper.selectAdminCount");
+		return list;
+	}
+
 }

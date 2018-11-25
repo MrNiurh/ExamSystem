@@ -6,9 +6,11 @@ $(function() {
 })
 
 function systemSubmit() {
-	
-	if (!$("#teacher_r").prop("checked")) {
-		$("#teacher_right").val('0');
+
+	if ($("#teacher_c").prop("checked")) {
+		$("#Sclear").val('1');
+	} else {
+		$("#Sclear").val('0');
 	}
 	var data = $(".settings").serialize();
 	var URL = root + "/admin/updateSystem";
@@ -26,5 +28,5 @@ function systemSubmit() {
 			location.reload();
 		}
 	})
-	
+
 }

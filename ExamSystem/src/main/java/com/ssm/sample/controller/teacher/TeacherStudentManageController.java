@@ -39,6 +39,7 @@ public class TeacherStudentManageController extends BaseController {
 	public Object insertStudent() {
 		PageData pd = this.getPageData();
 		boolean b = false;
+		System.out.println(pd);
 		ServletContext application = request.getSession().getServletContext();
 
 		try {

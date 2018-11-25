@@ -1,0 +1,81 @@
+.bighat{
+    height: 80px;
+    width: 100%;
+   
+}
+.bighat>h2{
+    float: left;
+    height: 80px;
+    line-height: 80px;
+    font-weight: bold;
+}
+.tecicon{
+    width: 80px;
+    height: 80px;
+    background-color: burlywood;
+    float: left;
+}
+.modifyall{
+    width: 100%;
+    margin: 20px 0;
+    background: #EEEEEE;
+    min-height: 100px;
+}
+.bigtext{
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    display: inline-block;
+}
+.jointext{
+    width: 200px;
+    height: 30px;
+    border-color: 1px solid #999999;
+}
+.notify{
+    width: 100%;
+    margin: 20px 0;
+    background:#545454;
+    border-radius: 14px;
+}
+.notify>span{
+    display: inline-block;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    margin:0 10px;
+}
+.wh{
+    width: 100%;
+    margin: 20px 0;
+    
+
+}
+.l{
+    float: left;
+}
+.r{
+    float: right;
+}
+.wh::after{
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.minput{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+}
+#daoru{
+    width: 200px;
+    height: 30px;
+    display: inline-block;
+    margin-right: 20px;
+    cursor: pointer;
+}

@@ -39,6 +39,13 @@ if (root == "/") {root="";}
 			</div>
 		</div>
 	</c:if>
+	<c:if test="${testid != null }">
+		<div class="userinfo ">
+			<div user="1" class="userstu ">
+				<h4>当前${RunTest.get(0).get('testname') }考试正在进行，请输入学号和姓名</h4>
+			</div>
+		</div>
+	</c:if>
 	<div>
 		<c:if test="${testid != null }">
 			<div class="logincontent stucontent">

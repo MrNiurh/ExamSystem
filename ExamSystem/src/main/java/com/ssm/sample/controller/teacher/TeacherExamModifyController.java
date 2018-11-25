@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
@@ -65,6 +67,8 @@ public class TeacherExamModifyController extends BaseController {
 		}
 
 		mv.addObject("editTest", list.get(0));
+		session.setAttribute("editTest", list.get(0));
+		session.setAttribute("import", list.get(0).getString("testid"));
 		return mv;
 	}
 
@@ -126,8 +130,37 @@ public class TeacherExamModifyController extends BaseController {
 	public Object excelUpload(@RequestParam MultipartFile file, HttpServletRequest request, HttpServletRequest reponse)
 			throws IOException {
 		PageData pd = this.getPageData();
+		System.out.println(pd);
 		String check = (String) this.teacherFacade.readExcel(file, pd);
 		return check;
+	}
+
+	@ResponseBody
+	@RequestMapping("/downTest")
+	private void down(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		// 根据考试 id 获取考试信息
+		// list = this.studentFacade.selectTestById(testid);
+		PageData pd = this.getPageData();
+		System.out.println(pd);
+		String testid = pd.getString("testid");
+		String testname = pd.getString("testname");
+		String submit = pd.getString("submit");
+		if (testname != null) {
+			String path = request.getServletContext().getRealPath("/") + "ExamSystem/" + testname + "/";
+			System.out.println(path);
+			String fileName = submit;
+			System.out.println(path + fileName);
+			File file = new File(path + fileName);
+			// File file = new
+			// File("E:\\EclipseWorkspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\Exam_SSM\\测试5\\test.xlsx");
+			System.out.println(file);
+			if (file != null) {
+				System.out.println("文件的名字：" + fileName);
+				response.addHeader("content-disposition", "attachment;filename=" + fileName);
+				FileUtils.copyFile(file, response.getOutputStream());
+			}
+		}
 	}
 
 }

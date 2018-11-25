@@ -48,27 +48,36 @@
 		<span class="newtext">自动开始</span><br> <input type="button"
 			id="update" class="layui-btn layui-btn-sm " value="修改">
 	</form>
-	<form action="" enctype="multipart/form-data" class="modifyall"
-		method="post" id="uploadForm">
-		<span class="newh3">上传试卷</span><br> <input type="file"
-			name="file" id="file" style="display: inline-block" class="po">
-		<input type="hidden" name="testid" value="${editTest.get('testid')}" />
-		<input type="submit" class="layui-btn layui-btn-sm " value="上传"
-			id="fileUpload">
+	<div class="modifyall">
+		<c:if test="${editTest.get('submit') == null}">
+			<span class="newh3">上传试卷</span>
+			<br>
+		</c:if>
 		<c:if
 			test="${editTest.get('submit') != null && editTest.get('submit') != ''}">
-			<br>
-			<span style="color: green">文件已上传</span>
+			<form action="downTest" name="form3" id="form3" method="post">
+				<input type="hidden" name="testid" value="${editTest.get('testid')}"
+					id="testid" /> <input type="hidden" name="testname"
+					value="${editTest.get('testname')}"> <input type="hidden"
+					name="submit" value="${editTest.get('submit')}"> <span
+					class="newh3" style="color: green">文件已上传,再次上传将导致原有文件不可访问</span> <input
+					type="submit" class="btn btn-info" id="checkDown" value="下载查看">
+			</form>
 		</c:if>
-
-	</form>
-	<form class="modifyall" id="excelForm">
+		<form action="" enctype="multipart/form-data" class="modifyall"
+			method="post" id="uploadForm">
+			<input type="file" name="file" id="file"
+				style="display: inline-block" class="po"> <input
+				type="hidden" name="testid" value="${editTest.get('testid')}"
+				id="testid" /> <input type="submit" class="layui-btn layui-btn-sm "
+				value="上传" id="fileUpload">
+		</form>
+	</div>
+	<div class="modifyall" id="excelForm">
 		<span class="newh3">导入学生名单</span><br> <span class="newtext">目前设定参加此次考试的学生人数：${allStudent }</span><br>
-		<input type="file" name="file" id="file" style="display: inline-block"
-			class="po"> <input type="hidden" name="testid"
-			value="${editTest.get('testid')}"> <input id="excelButton"
-			type="button" class="layui-btn layui-btn-sm  po" value="继续导入">
-	</form>
+		<a href="<%=basePath%>teacher/import_student"
+			class="layui-btn layui-btn-sm  po">继续导入</a>
+	</div>
 	<c:if test="${testid ==null}">
 		<div class="modifyall">
 			<button class="btn btn-primary" name="${editTest.get('testid')}"

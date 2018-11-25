@@ -122,4 +122,10 @@ public class AdminFacade extends BaseFacade {
 		return this.adminService.updatePassword(pd);
 	}
 
+	public List<PageData> selectAdminCount() {
+		// TODO Auto-generated method stub
+		List<PageData> list =this.adminService.selectAdminCount();
+		return list;
+	}
+
 }

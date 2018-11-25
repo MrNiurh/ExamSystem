@@ -299,8 +299,41 @@ public class TeacherFacade extends BaseFacade {
 
 	public List<PageData> selectTeacherById(int i) {
 		// TODO Auto-generated method stub
-		List<PageData> list =this.teacherService.selectTeacherById(i);
-		return null;
+		List<PageData> list = this.teacherService.selectTeacherById(i);
+		return list;
+	}
+
+	public boolean insertNotify(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.teacherService.insertNotify(pd);
+	}
+
+	public List<PageData> selectInfos() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.selectInfos();
+		return list;
+	}
+
+	public List<PageData> controllStudentByIp(PageData pd) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.controllStudentByIp(pd);
+		return list;
+	}
+
+	public boolean deleteInfo(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.teacherService.deleteInfo(pd);
+	}
+
+	public boolean deleteOnrStuent(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.teacherService.deleteOnrStuent(pd);
+	}
+
+	public List<PageData> selectSystem() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.teacherService.selectSystem();
+		return list;
 	}
 
 }

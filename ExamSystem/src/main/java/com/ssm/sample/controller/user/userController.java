@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssm.sample.controller.base.BaseController;
+import com.ssm.sample.facade.admin.AdminFacade;
 import com.ssm.sample.facade.student.StudentFacade;
 import com.ssm.sample.facade.teacher.TeacherFacade;
 import com.ssm.sample.facade.user.UserFacade;
@@ -34,6 +35,8 @@ public class userController extends BaseController {
 	StudentFacade studentFacade;
 	@Autowired
 	TeacherFacade teacherFacade;
+	@Autowired
+	AdminFacade adminFacade;
 
 	@RequestMapping({ "/login" })
 	public ModelAndView home() throws IOException {
@@ -42,11 +45,33 @@ public class userController extends BaseController {
 
 		try {
 			List<PageData> list = this.teacherFacade.selectNowTest();
+			List<PageData> system = this.adminFacade.selectSystem();
 			// 考试
 			if (list != null) {
+				String id = list.get(0).getString("testid");
 				ServletContext application = request.getSession().getServletContext();
 				application.setAttribute("testid", list.get(0).getString("testid"));
 				application.setAttribute("RunTest", list);
+				application.setAttribute("clear", system.get(0).getString("clear"));
+
+				String ip = InetAddress.getLocalHost().getHostAddress().toString();
+				System.out.println("ipppppp" + ip);
+				PageData pd = this.getPageData();
+				pd.put("testid", id);
+				pd.put("ip", ip);
+				List<PageData> student = this.teacherFacade.controllStudentByIp(pd);
+				if (student != null) {
+					System.out.println(student + "stuaaaa");
+					session.setAttribute("fullname", student.get(0).getString("stuname"));
+					session.setAttribute("identity", "student");
+					session.setAttribute("stuid", student.get(0).get("stuid"));
+					// mv.setViewName("student/student");
+					String path = request.getContextPath();
+					String basePath = request.getScheme() + "://" + request.getServerName() + ":"
+							+ request.getServerPort() + path + "/";
+					System.out.println(basePath);
+					response.sendRedirect(basePath + "student/");
+				}
 			}
 
 		} catch (Exception e) {
@@ -126,6 +151,7 @@ public class userController extends BaseController {
 				// 在 session 内存储登录状态
 				session.setAttribute("identity", "teacher");
 				session.setAttribute("teacher_id", teacher.get(0).getString("id"));
+				session.setAttribute("ifadmin", teacher.get(0).getString("admin"));
 
 			} else {
 				// 无返回结果
@@ -146,24 +172,37 @@ public class userController extends BaseController {
 	@RequestMapping({ "/a_login" })
 	public Object a_Login() {
 		PageData pd = this.getPageData();
-
-		List<PageData> admin = new ArrayList<>();
-
 		Map<String, String> map = new HashMap<String, String>();
-		try {
-			String a_password = MD5.md5(pd.getString("a_password"));
-			pd.put("a_password", a_password);
-			admin = this.userFacade.getAdmin(pd);
-			if (admin.size() != 0) {
+		List<PageData> admin = new ArrayList<>();
+		List<PageData> count = this.adminFacade.selectAdminCount();
+		System.out.println(count);
+		String num = count.get(0).getString("count(id)");
+		System.out.println(pd);
+		if (num.equals("0")) {
+			String name = pd.getString("a_password");
+			String password = pd.getString("a_name");
+			if (name.equals("admin") && password.equals("admin")) {
 				map.put("check", "true");
-				session.setAttribute("fullname", admin.get(0).getString("fullname"));
+				session.setAttribute("fullname", "admin");
 				session.setAttribute("identity", "admin");
-			} else {
-				map.put("check", "false");
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			try {
+				String a_password = MD5.md5(pd.getString("a_password"));
+				pd.put("a_password", a_password);
+				admin = this.userFacade.getAdmin(pd);
+				if (admin.size() != 0) {
+					map.put("check", "true");
+					session.setAttribute("fullname", admin.get(0).getString("fullname"));
+					session.setAttribute("identity", "admin");
+				} else {
+					map.put("check", "false");
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return map;
 	}

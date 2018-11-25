@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -24,11 +25,18 @@
 		<div>
 			<div class="content leftcontent">
 				<form action="downTest" name="form3" id="form3" method="post">
-					<div class="test">
-						<h3 class="fontweight">试卷下载</h3>
-						<input type="submit" class="test_down" value="下载查看" /> <input
-							type="hidden" name="testid" value="${testid}" />
-					</div>
+					<c:if test="${RunTest.get(0).get('submit') !=null}">
+						<div class="test">
+							<h3 class="fontweight">试卷下载</h3>
+							<input type="submit" class="test_down" value="下载查看" /> <input
+								type="hidden" name="testid" value="${testid}" />
+						</div>
+					</c:if>
+					<c:if test="${RunTest.get(0).get('submit') ==null}">
+						<div class="test">
+							<h3>当前考试没有电子试卷</h3>
+						</div>
+					</c:if>
 				</form>
 			</div>
 

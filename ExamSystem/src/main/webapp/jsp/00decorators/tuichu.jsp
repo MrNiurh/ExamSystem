@@ -110,12 +110,13 @@ var abroot = "<%=basePath%>";
         		success : function(data) {
         				var index = parent.layer.getFrameIndex(window.name);
         	            parent.layer.close(index);
+        	            parent.location.reload();
         		},
         		error : function(data) {
         			alert("操作失败");
         		}
         	})
-        	history.go(-1);
+        	
         });
         $('#suiyi').click(function(){
             var index = parent.layer.getFrameIndex(window.name);

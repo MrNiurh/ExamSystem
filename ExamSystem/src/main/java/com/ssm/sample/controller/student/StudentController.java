@@ -89,6 +89,14 @@ public class StudentController extends BaseController {
 	}
 
 	@ResponseBody
+	@RequestMapping("/selectAllInfos")
+	public Object selectInfos() {
+		List<PageData> list = this.teacherFacade.selectInfos();
+		session.setAttribute("infos", list);
+		return list;
+	}
+
+	@ResponseBody
 	@RequestMapping("/studentUpload")
 	public String upload(MultipartFile file, HttpServletRequest request, HttpServletRequest reponse)
 			throws IOException {

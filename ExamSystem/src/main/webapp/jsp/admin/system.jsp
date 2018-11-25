@@ -52,15 +52,18 @@
 					<p class="helpinfo">指定上传文件的长度上限（字节），高于此值发出警告</p>
 				</div>
 				<div class="submitbtn">
-					<c:if test="${system.get(0).get('teacher_right')  == '1'}">
-						<input type="checkbox" style="margin-left: 183px" id="teacher_r"
-							checked="checked">教师可以清理和删除考试<br>
+
+					<c:if test="${system.get(0).get('clear')  == 0}">
+						<input type="checkbox" style="margin-left: 183px" id="teacher_c">教师可以清理和删除考试<br>
 					</c:if>
-					<c:if test="${system.get(0).get('teacher_right')  == '0'}">
-						<input type="checkbox" style="margin-left: 183px" id="teacher_r">教师可以清理和删除考试<br>
+					<c:if test="${system.get(0).get('clear')  == 1}">
+						<input type="checkbox" checked style="margin-left: 183px"
+							id="teacher_c">教师可以清理和删除考试<br>
 					</c:if>
-					<input type="hidden" name="teacher_right" value="1" id="teacher_right">
-					<input type="submit" style="margin: 20px 0px 0px 183px" id="submit"
+					<input type="hidden" name="clear" value="0" id="Sclear"> <input
+						type="hidden" name="teacher_right"
+						value="${system.get(0).get('teacher_right') }"><input
+						type="button" style="margin: 20px 0px 0px 183px" id="submit"
 						class="sumbtn" value="修改">
 				</div>
 			</form>

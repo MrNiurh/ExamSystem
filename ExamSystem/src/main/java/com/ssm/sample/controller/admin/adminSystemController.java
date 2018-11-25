@@ -2,6 +2,8 @@ package com.ssm.sample.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +49,8 @@ public class adminSystemController extends BaseController {
 		boolean b = false;
 		try {
 			b = this.adminFacade.updateSystem(pd);
+			ServletContext application = request.getServletContext();
+			application.setAttribute("clear", pd.getString("clear"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

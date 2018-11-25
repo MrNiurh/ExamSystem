@@ -85,12 +85,14 @@ public class TeacherExamAfterController extends BaseController {
 				List<PageData> list = this.teacherFacade.selectTestById(pd.getString("testid"));
 				application.setAttribute("testid", pd.getString("testid"));
 				application.setAttribute("appTestName", list.get(0).getString("testname"));
+				application.setAttribute("RunTest", list);
 			}
 			// 结束考试
 			if (b == true && pd.getString("test_signal").equals("2")) {
 				application.removeAttribute("testid");
 				application.removeAttribute("appTestName");
 				application.removeAttribute("RunTest");
+				application.removeAttribute("clear");
 				this.teacherFacade.deleteInfosAfter();
 			}
 			// 清理考试

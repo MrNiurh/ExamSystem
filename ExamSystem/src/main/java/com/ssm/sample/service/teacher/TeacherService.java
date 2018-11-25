@@ -157,4 +157,37 @@ public class TeacherService extends BaseService {
 		return list;
 	}
 
+	public boolean insertNotify(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.insert("teacher.teacherMapper.insertNotify", pd) > 0;
+	}
+
+	public List<PageData> selectInfos() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectInfos");
+		return list;
+	}
+
+	public List<PageData> controllStudentByIp(PageData pd) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.controllStudentByIp", pd);
+		return list;
+	}
+
+	public boolean deleteInfo(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteOneInfo", pd) > 0;
+	}
+
+	public boolean deleteOnrStuent(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteOnrStuent", pd) > 0;
+	}
+
+	public List<PageData> selectSystem() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectSystem");
+		return list;
+	}
+
 }

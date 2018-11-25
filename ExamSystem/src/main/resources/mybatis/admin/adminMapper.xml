@@ -46,7 +46,7 @@
 		#{test_maxtime}, file_minsize =
 		#{file_minsize},
 		file_maxsize=#{file_maxsize},teacher_right
-		=#{teacher_right}
+		=#{teacher_right},clear=#{clear}
 	</update>
 
 	<!-- 重置密码(需要传入教师id) -->
@@ -96,6 +96,11 @@
 		where id =
 		#{id}
 	</update>
+
+	<select id="selectAdminCount" resultType="pd">
+		select count(id) from
+		teacher where admin="1";
+	</select>
 
 
 </mapper>
