@@ -104,8 +104,8 @@ public class TeacherFacade extends BaseFacade {
 	/*
 	 * 根据 id 查询教师
 	 */
-	public List<PageData> selectTeacherById(int id) {
-		List<PageData> list = this.teacherService.selectTeacherById(id);
+	public List<PageData> selectTeacherById(PageData pd) {
+		List<PageData> list = this.teacherService.selectTeacherById(pd);
 		return list;
 
 	}
@@ -290,6 +290,17 @@ public class TeacherFacade extends BaseFacade {
 	 */
 	public boolean deleteTestAfter(String testid) {
 		return this.teacherService.deleteTestAfter(testid);
+	}
+
+	public boolean updatePassword(PageData pd) {
+		return this.teacherService.updatePassword(pd);
+
+	}
+
+	public List<PageData> selectTeacherById(int i) {
+		// TODO Auto-generated method stub
+		List<PageData> list =this.teacherService.selectTeacherById(i);
+		return null;
 	}
 
 }

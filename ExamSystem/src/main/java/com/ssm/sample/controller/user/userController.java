@@ -122,6 +122,7 @@ public class userController extends BaseController {
 				map.put("check", "true");
 				// 在 session 内储存姓名
 				session.setAttribute("fullname", teacher.get(0).getString("fullname"));
+				session.setAttribute("checkPassword", teacher.get(0).getString("password"));
 				// 在 session 内存储登录状态
 				session.setAttribute("identity", "teacher");
 				session.setAttribute("teacher_id", teacher.get(0).getString("id"));

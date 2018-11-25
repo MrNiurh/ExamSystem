@@ -56,7 +56,7 @@ public class AdminService extends BaseService {
 		List<PageData> list = this.sqlSessionTemplate.selectList("admin.adminMapper.getTeacherById", id);
 		return list;
 	}
-	
+
 	public boolean deleteStuentsAfter(String testid) {
 		// TODO Auto-generated method stub
 		return this.sqlSessionTemplate.delete("admin.adminMapper.deleteStuentsAfter", testid) > 0;
@@ -75,6 +75,33 @@ public class AdminService extends BaseService {
 	public boolean deleteInfosAfter() {
 		// TODO Auto-generated method stub
 		return this.sqlSessionTemplate.delete("admin.adminMapper.deleteInfosAfter") > 0;
+	}
+
+	public List<PageData> selectTeacherById(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.selectList("admin.adminMapper.selectTeacherById", pd);
+	}
+
+	public List<PageData> selectAfterTest() {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("admin.adminMapper.selectAfterTest");
+		return list;
+	}
+
+	public boolean updateSignal(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.update("admin.adminMapper.updateSignal", pd) > 0;
+	}
+
+	public List<PageData> selectTestById(String testid) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("admin.adminMapper.selectTestById", testid);
+		return list;
+	}
+
+	public boolean updatePassword(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.update("admin.adminMapper.updatePassword", pd) > 0;
 	}
 
 }

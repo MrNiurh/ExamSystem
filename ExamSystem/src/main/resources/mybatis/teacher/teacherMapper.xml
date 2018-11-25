@@ -17,7 +17,12 @@
 	</insert>
 
 	<!-- 通过 id 查询教师 -->
-	<select id="selectTeacherById" parameterType="int"
+	<select id="selectTeacherById" parameterType="pd"
+		resultType="pd">
+		select * from teacher where id=#{id}
+	</select>
+	<!-- 通过 id 查询教师 -->
+	<select id="selectTeacherByInt" parameterType="int"
 		resultType="pd">
 		select * from teacher where id=#{id}
 	</select>
@@ -162,5 +167,12 @@
 	<delete id="deleteTestAfter">
 		delete from test where testid = #{testid}
 	</delete>
+	<!-- 更新密码 -->
+	<update id="updatePassword" parameterType="pd">
+		update teacher set
+		password = #{password}
+		where id =
+		#{id}
+	</update>
 
 </mapper>

@@ -56,8 +56,6 @@ public class TeacherService extends BaseService {
 		return result > 0;
 	}
 
-
-
 	public boolean insertStudent(PageData pd) {
 		// TODO Auto-generated method stub
 		int result = this.sqlSessionTemplate.insert("teacher.teacherMapper.insertStudent", pd);
@@ -70,9 +68,9 @@ public class TeacherService extends BaseService {
 		return list;
 	}
 
-	public List<PageData> selectTeacherById(int id) {
+	public List<PageData> selectTeacherById(PageData pd) {
 		// TODO Auto-generated method stub
-		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectTeacherById", id);
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectTeacherById", pd);
 		return list;
 	}
 
@@ -146,6 +144,17 @@ public class TeacherService extends BaseService {
 	public boolean deleteInfosAfter() {
 		// TODO Auto-generated method stub
 		return this.sqlSessionTemplate.delete("teacher.teacherMapper.deleteInfosAfter") > 0;
+	}
+
+	public boolean updatePassword(PageData pd) {
+		// TODO Auto-generated method stub
+		return this.sqlSessionTemplate.update("teacher.teacherMapper.updatePassword", pd) > 0;
+	}
+
+	public List<PageData> selectTeacherById(int i) {
+		// TODO Auto-generated method stub
+		List<PageData> list = this.sqlSessionTemplate.selectList("teacher.teacherMapper.selectTeacherByInt", i);
+		return list;
 	}
 
 }

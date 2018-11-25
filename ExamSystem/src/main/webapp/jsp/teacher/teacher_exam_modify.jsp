@@ -56,9 +56,9 @@
 		<input type="submit" class="layui-btn layui-btn-sm " value="上传"
 			id="fileUpload">
 		<c:if
-			test="${editTest.get('submit') != null || editTest.get('submit') != ''}">
+			test="${editTest.get('submit') != null && editTest.get('submit') != ''}">
 			<br>
-			<span style="color: green">已上传文件</span>
+			<span style="color: green">文件已上传</span>
 		</c:if>
 
 	</form>

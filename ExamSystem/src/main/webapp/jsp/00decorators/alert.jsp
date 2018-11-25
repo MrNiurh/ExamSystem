@@ -1,5 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html>
-
+<script type="text/javascript">
+var root = "<%=path%>/";
+if (root == "/") {root="";}
+var abroot = "<%=basePath%>";
+</script>
 <html> 
     <head>
         <meta charset="utf-8">
@@ -36,25 +47,27 @@ a:focus{text-decoration: none; color: #fff}
     </head>
     <body>
             <div style="width:500px;margin: 0 auto">
-                <form class="layui-form" action="">
+                <form class="layui-form" action="" method="post" id="updatePassword">
                     <div class="layui-form-item">
                       <label class="new-label">请输入旧口令</label>
                       <div class="layui-input-inline">
-                        <input type="password" name="password" required lay-verify="required" placeholder="旧口令" autocomplete="off" class="layui-input">
+                        <input type="password" name="oldpassword" required lay-verify="required" placeholder="旧口令" autocomplete="off" class="layui-input">
                       </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="new-label">请输入新口令</label>
                         <div class="layui-input-inline">
-                          <input type="password" name="password" required lay-verify="required" placeholder="新口令" autocomplete="off" class="layui-input">
+                          <input id="password" type="password" name="password" required lay-verify="required" placeholder="新口令" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-form-item">
                         <label class="new-label">确认新口令</label>
                         <div class="layui-input-inline">
-                          <input type="password" name="password" required lay-verify="required" placeholder="确认新口令" autocomplete="off" class="layui-input">
+                          <input id="checkpassword" type="password" required lay-verify="required" placeholder="确认新口令" autocomplete="off" class="layui-input">
                         </div>
                       </div>
+                      <input type="hidden" id="identity" value="${identity}">
+                      <input type="hidden" name="id" value="${teacher_id }">
                       <div class="layui-form-item au">
                       <a class="layui-btn" href="javascript:void(0)" target="_self" id="go">立即提交</a>
                       <a class="layui-btn" href="javascript:void(0)" target="_self"  id="o">取消</a>
@@ -77,8 +90,37 @@ a:focus{text-decoration: none; color: #fff}
             var layer = layui.layer;
         });
         $('#go').click(function(){
-            var index = parent.layer.getFrameIndex(window.name);
-            parent.layer.close(index);
+        	 
+        	if($("#password").val()=="" ||$("#oldpassword").val()=="" ){
+        		alert("请输入密码");
+        		return false;
+        	}
+        	if($("#password").val()!=$("#checkpassword").val()){
+        		alert("密码不一致");
+        		return false;
+        	}
+        	var data = $("#updatePassword").serialize();
+        	var URL=root + "/" + $("#identity").val() +"/updatePassword";
+        	$.ajax({
+        		url : URL,
+        		type : "post",
+        		async : false,
+        		data : data,
+        		dataType : 'json',
+        		success : function(data) {
+        			if (data == true) {
+        				location.reload();
+        				var index = parent.layer.getFrameIndex(window.name);
+        	            parent.layer.close(index);
+        	            alert("修改成功");
+        			} else {
+        			}
+        		},
+        		error : function(data) {
+        			alert("密码输入错误");
+        		}
+        	})
+            
         });
         $('#o').click(function(){
             var index = parent.layer.getFrameIndex(window.name);

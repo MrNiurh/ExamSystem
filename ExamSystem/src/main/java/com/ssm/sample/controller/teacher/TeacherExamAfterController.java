@@ -53,7 +53,9 @@ public class TeacherExamAfterController extends BaseController {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			for (int i = 0; i < list.size(); i++) {
 				// 添加教师名
-				List<PageData> teacher = this.teacherFacade.selectTeacherById((int) list.get(i).get("tea_id"));
+				PageData pd =this.getPageData();
+				pd.put("id", list.get(i).get("tea_id"));
+				List<PageData> teacher = this.teacherFacade.selectTeacherById(pd);
 				list.get(i).put("teacherName", teacher.get(0).get("fullname"));
 				// 时间格式化
 				Date d = date.getDateTime(list.get(i).getString("starttime"));

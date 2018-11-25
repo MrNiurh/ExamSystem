@@ -134,7 +134,7 @@ var abroot = "<%=basePath%>";
                 title: '退出',
                 shadeClose: true, //点击遮罩关闭层
                 area: ['300px', '200px'],
-                content:abroot+ 'jsp/00decorators/tuichu.html'
+                content:abroot+ 'jsp/00decorators/tuichu.jsp'
             })
         })
         $("#xiugai").click(function () {
@@ -143,7 +143,7 @@ var abroot = "<%=basePath%>";
                 title: '修改口令',
                 shadeClose: true, //点击遮罩关闭层
                 area: ['500px', '350px'],
-                content: abroot+ 'jsp/00decorators/alert.html'
+                content: abroot+ 'jsp/00decorators/alert.jsp'
             })
         })
     </script>
