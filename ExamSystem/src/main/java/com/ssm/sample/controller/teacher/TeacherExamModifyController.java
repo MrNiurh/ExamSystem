@@ -121,7 +121,7 @@ public class TeacherExamModifyController extends BaseController {
 		/*
 		 * 文件大小检测
 		 */
-		/*long filesize = file.getSize();
+		long filesize = file.getSize();
 		long minSize = (long) system.get(0).get("file_minsize");
 		long maxSize = (long) system.get(0).get("file_maxsize");
 		// System.out.println(minSize);
@@ -132,7 +132,7 @@ public class TeacherExamModifyController extends BaseController {
 		if (maxSize < filesize) {
 			session.setAttribute("max", maxSize + "Byte");
 			return "max";
-		}*/
+		}
 
 		// 保存路径为考试名
 		String path = request.getSession().getServletContext()

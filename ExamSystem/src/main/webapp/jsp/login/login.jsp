@@ -60,7 +60,7 @@ if (root == "/") {root="";}
 
 				<div class="formbox">
 					<div class="form">
-						<form action="" method="post" class="login">
+						<form action="" method="post" class="login"  onkeydown="studentKeyLogin();">
 							<p>
 								<input type="text" name="s_id" placeholder="  学号"
 									style="margin-bottom: 10px;"></br> <input name="s_name"
@@ -85,7 +85,7 @@ if (root == "/") {root="";}
 
 			<div class="formbox">
 				<div class="form">
-					<form action="" method="post" class="login" id="t_form">
+					<form action="" method="post" class="login" id="t_form"  onkeydown="teacherKeyLogin();">
 						<p>
 							<input type="text" name="t_name" placeholder="  用户名"
 								style="margin-bottom: 10px;"></br> <input name="t_password"
@@ -109,7 +109,7 @@ if (root == "/") {root="";}
 
 			<div class="formbox">
 				<div class="form">
-					<form action="" method="post" class="login">
+					<form action="" method="post" class="login" id="adminForm" onkeydown="adminKeyLogin();">
 						<p>
 							<input type="text" name="a_name" placeholder="  用户名"
 								style="margin-bottom: 10px;"></br> <input name="a_password"
