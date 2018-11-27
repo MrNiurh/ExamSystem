@@ -79,13 +79,26 @@
 			class="layui-btn layui-btn-sm  po">继续导入</a>
 	</div>
 	<c:if test="${testid ==null}">
-		<div class="modifyall">
-			<button class="btn btn-primary" name="${editTest.get('testid')}"
-				style="margin-top: 30px" id="startTest">
-				<i class="iconfont icon-xiayiye"></i>开启考试
-			</button>
-			<br>
-		</div>
+		<c:if test="${ok=='ok' }">
+			<div class="modifyall">
+				<button class="btn btn-primary" name="${editTest.get('testid')}"
+					style="margin-top: 30px" id="startTest">
+					<i class="iconfont icon-xiayiye"></i>开启考试
+				</button>
+				<br>
+			</div>
+		</c:if>
+		<c:if test="${ok!='ok' }">
+			<div class="modifyall">
+				<h3 style="color: red">时间超过阙值，无法开启考试</h3>
+				<button class="layui-btn  layui-btn-disabled"
+					style="margin-top: 30px">
+					<i class="iconfont icon-xiayiye"></i>开启考试
+				</button>
+				<br>
+			</div>
+		</c:if>
+
 	</c:if>
 	<c:if test="${testid != null }">
 		<div class="modifyall">
@@ -95,6 +108,8 @@
 			</p>
 		</div>
 	</c:if>
+	<input type="hidden" id="min" value="${min}"> <input
+		type="hidden" id="max" value="${max}">
 </div>
 
 <script>

@@ -35,9 +35,9 @@ public class teacherCreateExamController extends BaseController {
 			UtilDate date = null;
 			PageData pd = this.getPageData();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 			for (int i = 0; i < list.size(); i++) {
 				// 添加教师名
-
 				pd.put("id", list.get(i).get("tea_id"));
 				List<PageData> teacher = this.teacherFacade.selectTeacherById(pd);
 				list.get(i).put("teacherName", teacher.get(0).get("fullname"));
@@ -62,6 +62,8 @@ public class teacherCreateExamController extends BaseController {
 	public Object insertTest() {
 		PageData pd = this.getPageData();
 		boolean b = false;
+		System.out.println("run");
+		System.out.println(pd);
 		try {
 			System.out.println(pd);
 			b = this.teacherFacade.insertTest(pd);
@@ -69,7 +71,7 @@ public class teacherCreateExamController extends BaseController {
 			// TODO: handle exception
 		}
 		return b;
-		
+
 	}
 
 }

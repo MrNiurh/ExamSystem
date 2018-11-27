@@ -106,9 +106,11 @@ public class StudentController extends BaseController {
 		String testid = (String) application.getAttribute("testid");
 		List<PageData> list = this.studentFacade.selectTestById(testid);
 		pd.put("testid", testid);
-		System.out.println(pd);
+		// System.out.println(pd);
 		List<PageData> student = this.teacherFacade.selectAllStudent(pd);
-		System.out.println(student);
+		List<PageData> system = this.teacherFacade.selectSystem();
+		// System.out.println(student);
+
 		// 保存路径为考试名
 		String path = request.getSession().getServletContext()
 				.getRealPath("/ExamSystem/" + list.get(0).getString("testname") + "/"
@@ -119,19 +121,33 @@ public class StudentController extends BaseController {
 			// 将文件信息加入到数据库
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 设置日期格式
 			String date = df.format(new Date());
+			/*
+			 * 文件大小检测
+			 */
 			long filesize = file.getSize();
+			long minSize = (long) system.get(0).get("file_minsize");
+			long maxSize = (long) system.get(0).get("file_maxsize");
+			// System.out.println(minSize);
+			if (minSize > filesize) {
+				session.setAttribute("min", minSize + "Byte");
+				return "min";
+			}
+			if (maxSize < filesize) {
+				session.setAttribute("max", maxSize + "Byte");
+				return "max";
+			}
 			pd.put("filename", fileName);
 			pd.put("fileuptime", date);
 			pd.put("filesize", filesize + "Byte");
-			System.out.println("file" + pd);
-			System.out.println("fileName>>" + fileName);
+			// System.out.println("file" + pd);
+			// System.out.println("fileName>>" + fileName);
 			this.studentFacade.insertUploadFile(pd);
 			File dir = new File(path, fileName);
-			System.out.println("dir.exists()>>" + dir.exists());
+			// System.out.println("dir.exists()>>" + dir.exists());
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
-			System.out.println("dir.exists()>>" + dir.exists());
+			// System.out.println("dir.exists()>>" + dir.exists());
 //			MultipartFile自带的解析方法
 			file.transferTo(dir);
 		}

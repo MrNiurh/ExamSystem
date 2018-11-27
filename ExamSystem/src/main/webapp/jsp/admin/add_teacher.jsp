@@ -28,7 +28,7 @@
 					id="t_password" name="t_password" placeholder="初始口令*"> <input
 					type="text" class="input" id="t_fullname" name="t_fullname"
 					placeholder="真实姓名*"> <input id="admin_signal" value="0"
-					type="checkbox">管理员 <input type="hidden" name="admin"
+					type="checkbox">管理员 <input type="hidden" name="admin" id="admin"
 					value="0" /><input class="btn btn-default sumbtn" type="submit"
 					value="提交">
 			</form>

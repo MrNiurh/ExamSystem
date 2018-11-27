@@ -11,13 +11,12 @@ function check() {
 	}
 	if ($("#auto_begin").prop("checked")) {
 		$("#begin").val('1');
-		
-	}else{
+
+	} else {
 		$("#begin").val('0');
 	}
 	var data = $("#TestForm").serialize();
 	var URL = root + "/teacher/insertTest";
-	alert(URL);
 	$.ajax({
 		url : URL,
 		type : "post",
@@ -25,7 +24,6 @@ function check() {
 		dataType : 'json',
 		async : true,
 		success : function(data) {
-			alert("aa");
 			location.reload();
 		},
 		error : function(data) {

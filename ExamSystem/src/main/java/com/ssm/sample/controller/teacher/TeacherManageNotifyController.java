@@ -29,9 +29,12 @@ public class TeacherManageNotifyController extends BaseController {
 	public ModelAndView home() {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("teacher/teacher_manage_notify");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			List<PageData> list = this.teacherFacade.selectInfos();
 			mv.addObject("infos", list);
+			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

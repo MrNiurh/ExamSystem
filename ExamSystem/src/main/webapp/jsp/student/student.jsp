@@ -58,6 +58,7 @@
 				</div>
 			</div>
 		</div>
-
+		<input type="hidden" id="min" value="${min}">
+		<input type="hidden" id="max" value="${max}">
 	</div>
 </div>

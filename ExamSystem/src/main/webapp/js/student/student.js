@@ -16,8 +16,18 @@ function fileUpload() {
 		processData : false,
 		contentType : false,
 		success : function(data) {
-			alert("操作成功");
-			location.reload();
+			if (data == "ok") {
+				location.reload();
+			}
+			if (data == "min") {
+				var min = $("#min").val();
+				alert("文件必须大于" + min);
+				location.reload();
+			}
+			if (data == "max") {
+				alert("文件必须小于" + max);
+				location.reload();
+			}
 		},
 		error : function(data) {
 			alert("操作失败");

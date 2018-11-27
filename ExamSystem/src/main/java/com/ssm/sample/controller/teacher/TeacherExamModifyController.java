@@ -61,6 +61,25 @@ public class TeacherExamModifyController extends BaseController {
 			List<PageData> stu = this.teacherFacade.selectStudent(pd);
 			String allStudent = stu.get(0).getString("count(stuid)");
 			mv.addObject("allStudent", allStudent);
+
+			/*
+			 * 限定时间阙值
+			 */
+			List<PageData> system = this.teacherFacade.selectSystem();
+			int limit = (int) system.get(0).get("test_maxtime");
+			String nowDate = sdf.format(new Date());
+			String testDate = sdf.format(d);
+			long nowTime = sdf.parse(nowDate).getTime();
+			long testTime = sdf.parse(testDate).getTime();
+			System.out.println(nowTime);
+			System.out.println(testTime);
+			int minutes = (int) ((nowTime - testTime) / (1000 * 60));
+			if (minutes > -limit && minutes < limit) {
+				mv.addObject("ok", "ok");
+			} else {
+				mv.addObject("ok", "no");
+			}
+			System.out.println(minutes + "minutes");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,6 +117,22 @@ public class TeacherExamModifyController extends BaseController {
 		// 根据考试 id 获取考试信息
 		String testid = pd.getString("testid");
 		List<PageData> list = this.teacherFacade.selectTestById(testid);
+		List<PageData> system = this.teacherFacade.selectSystem();
+		/*
+		 * 文件大小检测
+		 */
+		/*long filesize = file.getSize();
+		long minSize = (long) system.get(0).get("file_minsize");
+		long maxSize = (long) system.get(0).get("file_maxsize");
+		// System.out.println(minSize);
+		if (minSize > filesize) {
+			session.setAttribute("min", minSize + "Byte");
+			return "min";
+		}
+		if (maxSize < filesize) {
+			session.setAttribute("max", maxSize + "Byte");
+			return "max";
+		}*/
 
 		// 保存路径为考试名
 		String path = request.getSession().getServletContext()
