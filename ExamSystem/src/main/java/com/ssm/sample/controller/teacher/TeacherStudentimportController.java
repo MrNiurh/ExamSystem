@@ -33,17 +33,27 @@ public class TeacherStudentimportController extends BaseController {
 		PageData pd = this.getPageData();
 		String testid = (String) session.getAttribute("import");
 		pd.put("testid", testid);
-		System.out.println(pd);
+		//System.out.println(pd);
 		List<PageData> system = this.teacherFacade.selectSystem();
 		int page_record = 30;
 		try {
 			String a = system.get(0).getString("page_record");
 			page_record = Integer.valueOf(a).intValue();
-			String b = (String) session.getAttribute("page_record");
-			int record = Integer.valueOf(b).intValue();
+			String b = "";
+			int record = 0;
+			try {
+				b = (String) session.getAttribute("page_record");
+				record = Integer.valueOf(b).intValue();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				record = (int) session.getAttribute("page_record");
+				e.printStackTrace();
+			}
+
 			if (record > 0) {
-				System.out.println("hhhh");
+				// System.out.println("hhhh");
 				page_record = record;
+				//System.out.println(page_record + "true");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -51,13 +61,13 @@ public class TeacherStudentimportController extends BaseController {
 		}
 		PageHelper.startPage(pn, page_record);
 		List<PageData> list = this.teacherFacade.selectAllStudent(pd);
-		System.out.println(list);
+		// System.out.println(list);
 		PageInfo page = new PageInfo(list);
 		session.setAttribute("page_record", page_record);
 		mv.addObject("students", page);
-		System.out.println(page);
+		// System.out.println(page);
 		// mv.addObject("students", list);
-
+		//System.out.println(page_record + "real");
 		return mv;
 	}
 
@@ -84,6 +94,7 @@ public class TeacherStudentimportController extends BaseController {
 		int page_record = Integer.valueOf(pd.getString("page_record")).intValue();
 		if (page_record > 0) {
 			session.setAttribute("page_record", pd.getString("page_record"));
+			//System.out.println("do");
 		}
 		return true;
 	}

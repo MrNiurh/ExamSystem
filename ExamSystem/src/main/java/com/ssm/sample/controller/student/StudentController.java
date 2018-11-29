@@ -74,13 +74,12 @@ public class StudentController extends BaseController {
 					+ list.get(0).getString("testname") + "/";
 			System.out.println(path);
 			String fileName = list.get(0).getString("submit");
-			System.out.println(path + fileName);
+			fileName = new String(fileName.getBytes(), "ISO8859-1");
+			//System.out.println(path + fileName);
 			File file = new File(path + fileName);
-			// File file = new
-			// File("E:\\EclipseWorkspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\Exam_SSM\\测试5\\test.xlsx");
-			System.out.println(file);
+			//System.out.println(file);
 			if (file != null) {
-				System.out.println("文件的名字：" + fileName);
+				//System.out.println("文件的名字：" + fileName);
 				response.addHeader("content-disposition", "attachment;filename=" + fileName);
 				FileUtils.copyFile(file, response.getOutputStream());
 			}

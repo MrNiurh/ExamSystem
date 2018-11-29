@@ -11,7 +11,6 @@ function check() {
 	}
 	if ($("#auto_begin").prop("checked")) {
 		$("#begin").val('1');
-
 	} else {
 		$("#begin").val('0');
 	}
@@ -30,5 +29,4 @@ function check() {
 			alert("请勿添加相同考试名");
 		}
 	});
-	return false;
 }

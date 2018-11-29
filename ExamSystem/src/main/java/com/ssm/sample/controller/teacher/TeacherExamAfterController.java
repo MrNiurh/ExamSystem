@@ -53,7 +53,7 @@ public class TeacherExamAfterController extends BaseController {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			for (int i = 0; i < list.size(); i++) {
 				// 添加教师名
-				PageData pd =this.getPageData();
+				PageData pd = this.getPageData();
 				pd.put("id", list.get(i).get("tea_id"));
 				List<PageData> teacher = this.teacherFacade.selectTeacherById(pd);
 				list.get(i).put("teacherName", teacher.get(0).get("fullname"));
@@ -193,7 +193,8 @@ public class TeacherExamAfterController extends BaseController {
 	public void downZip(HttpServletRequest request, HttpServletRequest reponse) throws IOException {
 
 		PageData pd = this.getPageData();
-		System.out.println(pd);
+		//response.setContentType("application/x-msdownload;");
+		// System.out.println(pd);
 		String testid = pd.getString("testid");
 		System.out.println(testid);
 		List<PageData> list = new ArrayList<PageData>();
@@ -212,6 +213,8 @@ public class TeacherExamAfterController extends BaseController {
 				String sourcePath = request.getServletContext().getRealPath("/") + "ExamSystem/" + testName;
 				System.out.println(sourcePath);
 				String zipName = testName + ".zip";
+				zipName = new String(zipName.getBytes(), "ISO8859-1");
+				System.out.println(zipName);
 				String zipPath = request.getServletContext().getRealPath("/") + "ExamSystem/" + zipName;
 				File file = new File(sourcePath);// 要被压缩的文件夹
 				File zipFile = new File(zipPath);
@@ -225,7 +228,7 @@ public class TeacherExamAfterController extends BaseController {
 				zipOut.close();
 
 				if (zipFile != null) {
-					System.out.println("文件的名字：");
+					System.out.println("文件的名字：" + zipName);
 					response.addHeader("content-disposition", "attachment;filename=" + zipName);
 					FileUtils.copyFile(zipFile, response.getOutputStream());
 				}

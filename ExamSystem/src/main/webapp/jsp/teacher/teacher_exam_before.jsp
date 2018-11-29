@@ -30,8 +30,9 @@
 					type="text" id="time1" placeholder="考试时间" class="textline"
 					name="starttime"> <input type="checkbox" id="auto_begin"><span>自动开始</span>
 				<input type="hidden" name="auto_begin" value="0" id="begin">
-				<input type="hidden" value="${teacher_id}" name="t_id">
-				<button class="layui-btn layui-btn-sm layui-btn-normal" id="addTest">添加</button>
+				<input type="hidden" value="${teacher_id}" name="t_id"> <input
+					type="button" class="layui-btn layui-btn-sm layui-btn-normal"
+					id="addTest" value="添加">
 			</div>
 		</form>
 	</div>
@@ -107,14 +108,12 @@
 						<td>√</td>
 					</c:if>
 					<!-- 编辑 -->
-					<td>
-					<c:if test="${test.get('test_signal') < 1 }">
-						<a
-						href="<%=basePath%>teacher/teacher_modify?testid=${test.get('testid')}"><i
-							class="iconfont icon-bianji"></i></a>
-					
-					</c:if>
-							</td>
+					<td><c:if test="${test.get('test_signal') < 1 }">
+							<a
+								href="<%=basePath%>teacher/teacher_modify?testid=${test.get('testid')}"><i
+								class="iconfont icon-bianji"></i></a>
+
+						</c:if></td>
 				</tr>
 			</c:forEach>
 		</table>

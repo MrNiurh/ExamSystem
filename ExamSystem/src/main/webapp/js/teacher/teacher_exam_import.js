@@ -57,7 +57,6 @@ function excelUpload() {
 		contentType : false,
 		success : function(data) {
 			if (data == "true") {
-				alert("操作成功");
 				location.reload();
 			}
 			if (data == "false") {

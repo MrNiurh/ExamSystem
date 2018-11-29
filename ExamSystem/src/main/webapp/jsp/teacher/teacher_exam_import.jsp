@@ -25,16 +25,16 @@
 			<h2>上机考试管理</h2>
 		</div>
 		<div class="notify">
-			<span>完成学生名单的导入和修改后</span>
-			<button id="back" class="layui-btn layui-btn-primary layui-btn-sm">
-				<i class="layui-icon">&#xe642;</i> 返回编辑
-			</button>
+			<span>完成学生名单的导入和修改后</span> <a
+				href="<%=basePath%>teacher/teacher_modify?testid=${temp}"
+				class="layui-btn layui-btn-primary layui-btn-sm"> <i
+				class="layui-icon">&#xe642;</i> 返回编辑
+			</a>
 		</div>
 		<div class="wh">
 			<div class="l">
-				<span>分页大小</span> <input id="record"
-					style="text-align: center;" type="text" name="pagesize"
-					class="minput" value="${page_record}">
+				<span>分页大小</span> <input id="record" style="text-align: center;"
+					type="text" name="pagesize" class="minput" value="${page_record}">
 				<button class="layui-btn layui-btn-primary layui-btn-sm"
 					id="setPage">设置</button>
 			</div>
@@ -64,7 +64,7 @@
 					</a>
 				</c:if>
 				<a
-					href="<%=basePath%>teacher/import_student?pn=${students.pageNum+1}">
+					href="<%=basePath%>teacher/import_student?pn=${students.pages}">
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
 					</button>

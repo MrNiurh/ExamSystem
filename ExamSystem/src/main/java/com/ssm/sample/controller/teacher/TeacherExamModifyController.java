@@ -48,7 +48,7 @@ public class TeacherExamModifyController extends BaseController {
 	public ModelAndView home(@Param("testid") String testid) {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("teacher/teacher_exam_modify");
-
+		session.setAttribute("temp", testid);
 		List<PageData> list = null;
 		try {
 			list = this.teacherFacade.selectTestById(testid);
@@ -79,7 +79,7 @@ public class TeacherExamModifyController extends BaseController {
 			} else {
 				mv.addObject("ok", "no");
 			}
-			System.out.println(minutes + "minutes");
+			// System.out.println(minutes + "minutes");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -165,7 +165,7 @@ public class TeacherExamModifyController extends BaseController {
 	public Object excelUpload(@RequestParam MultipartFile file, HttpServletRequest request, HttpServletRequest reponse)
 			throws IOException {
 		PageData pd = this.getPageData();
-		System.out.println(pd);
+		//System.out.println(pd);
 		String check = (String) this.teacherFacade.readExcel(file, pd);
 		return check;
 	}
@@ -176,15 +176,23 @@ public class TeacherExamModifyController extends BaseController {
 
 		// 根据考试 id 获取考试信息
 		// list = this.studentFacade.selectTestById(testid);
+		response.setContentType("application/x-msdownload;");
 		PageData pd = this.getPageData();
 		System.out.println(pd);
 		String testid = pd.getString("testid");
+		List<PageData> list = this.teacherFacade.selectTestById(testid);
+		System.out.println("list");
+		System.out.println(list);
 		String testname = pd.getString("testname");
 		String submit = pd.getString("submit");
 		if (testname != null) {
 			String path = request.getServletContext().getRealPath("/") + "ExamSystem/" + testname + "/";
-			System.out.println(path);
+			// System.out.println(path);
 			String fileName = submit;
+			// fileName = new String(fileName.getBytes("gbk"),"ISO8859-1");
+			// fileName = new String(fileName.getBytes("utf-8"),"ISO8859-1");
+			fileName = new String(fileName.getBytes(), "ISO8859-1");
+			System.out.println(fileName);
 			System.out.println(path + fileName);
 			File file = new File(path + fileName);
 			// File file = new

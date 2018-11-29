@@ -55,7 +55,7 @@ public class userController extends BaseController {
 				application.setAttribute("clear", system.get(0).getString("clear"));
 
 				String ip = InetAddress.getLocalHost().getHostAddress().toString();
-				System.out.println("ipppppp" + ip);
+				// System.out.println("ipppppp" + ip);
 				PageData pd = this.getPageData();
 				pd.put("testid", id);
 				pd.put("ip", ip);
@@ -69,7 +69,7 @@ public class userController extends BaseController {
 					String path = request.getContextPath();
 					String basePath = request.getScheme() + "://" + request.getServerName() + ":"
 							+ request.getServerPort() + path + "/";
-					System.out.println(basePath);
+					// System.out.println(basePath);
 					response.sendRedirect(basePath + "student/");
 				}
 			}
@@ -96,7 +96,10 @@ public class userController extends BaseController {
 			student = this.userFacade.getStudent(pd);
 			if (student.size() != 0) {
 				map.put("check", "true");
-				session.setAttribute("fullname", student.get(0).getString("stuname"));
+				if (student.get(0).get("ip") != null && student.get(0).get("ip")!="") {
+					
+				}
+					session.setAttribute("fullname", student.get(0).getString("stuname"));
 				session.setAttribute("identity", "student");
 				session.setAttribute("stuid", student.get(0).get("stuid"));
 			} else {
