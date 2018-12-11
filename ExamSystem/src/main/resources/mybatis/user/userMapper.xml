@@ -12,6 +12,9 @@
 			<if test="s_name!=null and s_name!=''">
 				and stuname=#{s_name}
 			</if>
+			<if test="testid!=null and testid!=''">
+				and testid=#{testid}
+			</if>
 		</where>
 	</select>
 

@@ -62,7 +62,6 @@ public class adminController extends BaseController {
 		Enumeration em = request.getSession().getAttributeNames();
 		while (em.hasMoreElements()) {
 			request.getSession().removeAttribute(em.nextElement().toString());
-			System.out.println("clear");
 		}
 		
 		return true;

@@ -147,6 +147,9 @@ public class TeacherExamAfterController extends BaseController {
 		PageData pd = this.getPageData();
 		System.out.println(pd);
 		String testid = pd.getString("testid");
+		pd.put("test_signal", "3");
+		this.teacherFacade.updateSignal(pd);
+		session.setAttribute("nowFresh", "ok");
 		List<PageData> test = this.teacherFacade.selectTestById(testid);
 		List<PageData> list = this.teacherFacade.selectUploadById(testid);
 		System.out.println(list);
@@ -184,7 +187,6 @@ public class TeacherExamAfterController extends BaseController {
 			e.printStackTrace();
 		}
 		response.addHeader("content-disposition", "attachment;filename=" + fileName);
-		FileUtils.copyFile(file, response.getOutputStream());
 
 	}
 
@@ -193,7 +195,7 @@ public class TeacherExamAfterController extends BaseController {
 	public void downZip(HttpServletRequest request, HttpServletRequest reponse) throws IOException {
 
 		PageData pd = this.getPageData();
-		//response.setContentType("application/x-msdownload;");
+		// response.setContentType("application/x-msdownload;");
 		// System.out.println(pd);
 		String testid = pd.getString("testid");
 		System.out.println(testid);
@@ -202,6 +204,7 @@ public class TeacherExamAfterController extends BaseController {
 			// 归档考试
 			pd.put("test_signal", "3");
 			this.teacherFacade.updateSignal(pd);
+			session.setAttribute("nowFresh", "ok");
 			list = this.teacherFacade.selectTestById(testid);
 		}
 

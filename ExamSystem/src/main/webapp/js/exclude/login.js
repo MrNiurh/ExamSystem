@@ -32,8 +32,15 @@ function userLogin(URL, HREF) {
 		success : function(data) {
 			if (data.check == "true") {
 				window.location.href = abroot + HREF;
-			} else {
+			}
+			if (data.check == "false") {
 				alert("用户名或口令输入错误");
+			}
+			if (data.check == "another") {
+				alert("本账户已在其他机器登录");
+			}
+			if (data.check == "same") {
+				alert("已有账户登录");
 			}
 		},
 		error : function(data) {

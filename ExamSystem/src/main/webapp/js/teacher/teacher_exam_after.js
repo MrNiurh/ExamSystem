@@ -13,12 +13,17 @@ $(function() {
 		}
 		updateSignal(data);
 	});
+
 	$("#testDel").click(function() {
 		var data = {
 			"testid" : $(this).attr("name"),
 			"test_signal" : 5
 		}
 		updateSignal(data);
+	})
+
+	$("#exportrecords_info").click(function() {
+		$("#testClean").show();
 	})
 })
 
@@ -37,4 +42,5 @@ function updateSignal(data) {
 			alert("操作失败");
 		}
 	});
+
 }

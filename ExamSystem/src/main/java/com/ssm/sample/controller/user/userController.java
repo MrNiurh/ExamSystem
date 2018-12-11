@@ -55,7 +55,6 @@ public class userController extends BaseController {
 				application.setAttribute("clear", system.get(0).getString("clear"));
 
 				String ip = InetAddress.getLocalHost().getHostAddress().toString();
-				// System.out.println("ipppppp" + ip);
 				PageData pd = this.getPageData();
 				pd.put("testid", id);
 				pd.put("ip", ip);
@@ -86,20 +85,49 @@ public class userController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping({ "/s_login" })
-	public Object s_Login() {
+	public Object s_Login() throws UnknownHostException {
 		PageData pd = this.getPageData();
-
-		List<PageData> student = new ArrayList<>();
-
+		String ip = InetAddress.getLocalHost().getHostAddress().toString();
+		List<PageData> nowtest = this.teacherFacade.selectNowTest();
+		String testid = nowtest.get(0).getString("testid");
+		pd.put("testid", testid);
+		pd.put("ip", ip);
 		Map<String, String> map = new HashMap<String, String>();
+		List<PageData> student = new ArrayList<>();
+		System.out.println(pd);
+		// 查询当前 ip 对应的学生
+		List<PageData> test = this.teacherFacade.selectStudentByIp(pd);
+		System.out.println(test);
+		if (test.size() == 1) {
+			if (!test.get(0).get("stuid").equals(pd.get("s_id"))) {
+				map.put("check", "same");
+				System.out.println("sssssssssssssssssssss");
+				return map;
+			}
+		}
+		if (test.size() > 1) {
+			map.put("check", "same");
+			return map;
+		}
+
 		try {
 			student = this.userFacade.getStudent(pd);
+
 			if (student.size() != 0) {
 				map.put("check", "true");
-				if (student.get(0).get("ip") != null && student.get(0).get("ip")!="") {
-					
+
+				// 学生账户存在 IP 但与本机 IP 不一致
+				if (student.get(0).get("ip") != null && !student.get(0).getString("ip").equals("")) {
+					if (!student.get(0).getString("ip").equals(ip)) {
+						map.put("check", "another");
+						return map;
+					}
 				}
-					session.setAttribute("fullname", student.get(0).getString("stuname"));
+
+				if (student.get(0).get("ip") != null && student.get(0).get("ip") != "") {
+
+				}
+				session.setAttribute("fullname", student.get(0).getString("stuname"));
 				session.setAttribute("identity", "student");
 				session.setAttribute("stuid", student.get(0).get("stuid"));
 			} else {
@@ -107,20 +135,15 @@ public class userController extends BaseController {
 				map.put("check", "false");
 			}
 
-			try {
-				/*
-				 * 插入 ip
-				 */
-				ServletContext application = request.getSession().getServletContext();
-				String ip = InetAddress.getLocalHost().getHostAddress().toString();
-				pd.put("stuid", student.get(0).getString("stuid"));
-				pd.put("testid", application.getAttribute("testid"));
-				pd.put("ip", ip);
-				this.studentFacade.updateStudentIp(pd);
-			} catch (UnknownHostException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			/*
+			 * 插入 ip
+			 */
+			ServletContext application = request.getSession().getServletContext();
+
+			pd.put("stuid", student.get(0).getString("stuid"));
+			pd.put("testid", application.getAttribute("testid"));
+			pd.put("ip", ip);
+			this.studentFacade.updateStudentIp(pd);
 
 		} catch (Exception e) {
 			e.printStackTrace();
